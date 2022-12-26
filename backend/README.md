@@ -31,14 +31,59 @@
 ]
 ```
 
-## Query
-- Note that `input` is not necessary
-
-### `input` with `ingredients`
-- Note that `ingredients` is necessary but can be an empty list
+## Query - recipes
+- all
 ```
 query {
-    recipes (input: {ingredients: ["rhubarb", "cheese"]}) {
+    recipes {
+        id
+        title
+        url
+        ingredients # null
+        instructions # null
+    }
+}
+```
+
+- with `ingredients`
+```
+query {
+    recipes (ingredients: null) {
+        id
+        title
+        url
+        ingredients # null
+        instructions # null
+    }
+}
+```
+```
+query {
+    recipes (ingredients: []) {
+        id
+        title
+        url
+        ingredients # null
+        instructions # null
+    }
+}
+```
+```
+query {
+    recipes (ingredients: ["water", "cheese"]) {
+        id
+        title
+        url
+        ingredients # null
+        instructions # null
+    }
+}
+```
+
+## Query - recipe
+```
+query {
+    recipe (id: "000033e39b") {
         id
         title
         url
@@ -47,5 +92,4 @@ query {
     }
 }
 ```
-
 

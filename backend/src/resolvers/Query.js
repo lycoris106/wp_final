@@ -1,22 +1,33 @@
 const Query = {
-    recipes: async (parent, { input }, {recipeModel}) => {
-        const recipes = await recipeModel.find().sort();
-        
-        if (!input)
+    recipes: async (parent, {ingredients}, {recipeModel}) => {
+        let projection = "id title url";
+        if (ingredients)
+            projection += " ingredients";
+
+        const recipes = await recipeModel.find({}, projection);
+
+        if (!ingredients)
             return recipes;
 
-        if (input.ingredients) {
+        if (ingredients) {
             return recipes.filter((recipe) => {
                 for (const str of recipe.ingredients) {
-                    for (var key of input.ingredients) {
+                    for (var key of ingredients) {
                         if (str.includes(key))
                             return true;
                     }
                 }
                 return false;
+            })
+            .map((recipe) => {
+                recipe.ingredients = undefined;
+                return recipe;
             });
         }
-        return recipes;
+    },
+
+    recipe: async (parent, {id}, {recipeModel}) => {
+        return await recipeModel.findOne({id: id});
     }
 };
 

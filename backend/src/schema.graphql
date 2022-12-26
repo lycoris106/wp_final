@@ -1,15 +1,12 @@
 type Recipe {
     id: ID!
     title: String!
-    url: String
-    ingredients: [String!]!
-    instructions: [String!]!
+    url: String!
+    ingredients: [String]
+    instructions: [String]
 }
 
 type Query {
-    recipes(input: QueryRecipeInput): [Recipe]!
-}
-
-input QueryRecipeInput {
-    ingredients: [String]!
+    recipes(ingredients: [String]): [Recipe]!
+    recipe(id: ID!): Recipe!
 }
