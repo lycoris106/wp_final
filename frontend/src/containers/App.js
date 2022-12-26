@@ -6,6 +6,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import Search from './Search';
 import Result from './Result';
+import Detail from "./Detail";
 
 const theme = createTheme({
   palette: {
@@ -32,7 +33,8 @@ function App() {
         <Route exact path="/search" element={<Search />} />
         { /* Page for showing search results */ }
         <Route path="/result" element={<Result />} />
-
+        { /* Page for testing Detail.js */}
+        <Route path="/detail" element={<Detail />} />
 
         <Route path="/" element={<Navigate to="/search" />} />
       </Routes>
