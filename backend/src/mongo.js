@@ -11,7 +11,7 @@ async function connect() {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-    .then(() => console.log("mongo db connection created"));
+    .then(() => console.log("Mongo database connection created"));
 
     const db = mongoose.connection;
     db.once("open", () => {
