@@ -9,17 +9,17 @@ import Result from './Result';
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#8893ef",
+      main: "#DF1070",
     },
     secondary: {
-      main: "#7f3b56",
+      main: "#6125c5",
     },
-    background: {
-      paper: "#303030",
-      default: "#303030",
-    },
+    // background: {
+    //   paper: "#303030",
+    //   default: "#303030",
+    // },
   },
 });
 

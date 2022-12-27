@@ -16,21 +16,24 @@ const Result = () => {
             <RecipeCard
               imageURL={require("../devFiles/img/4405dc8988.jpg")}
               title={"Chocolate or something"}
-              Steps={["Melt the chocolate", "..."]}
+              steps={["Melt the chocolate", "..."]}
+              tags={["healthy", "vegan", "easy2make"]}
             />
           </Grid>
           <Grid item>
             <RecipeCard
               imageURL={require("../devFiles/img/440578f0ff.jpg")}
               title={"Bread"}
-              Steps={["Mix flour & egg", "Add milk and sugar", "Keep mixing"]}
+              steps={["Mix flour & egg", "Add milk and sugar", "Keep mixing"]}
+              tags={["easy2make"]}
             />
           </Grid>
           <Grid item>
             <RecipeCard
               imageURL={require("../devFiles/img/2433907268.jpg")}
               title={"Strawberry Smoothie"}
-              Steps={["Put strawberries in the blender", "Turn on the blender", "Pour it out into a cup"]}
+              steps={["Put strawberries in the blender", "Turn on the blender", "Pour it out into a cup"]}
+              tags={["vegan", "hard2make"]}
             />
           </Grid>
         </Grid>

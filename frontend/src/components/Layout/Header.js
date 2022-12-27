@@ -30,7 +30,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <AppBar position='absolute' open={true}>
+    <AppBar position='absolute' open={false}>
       <Toolbar sx={{ pr: '24px' }}>
         {/* Header text */}
         <Typography
