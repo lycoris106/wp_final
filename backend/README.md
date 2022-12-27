@@ -1,8 +1,20 @@
 # 1111 Web Programming Final Project Backend
 
 ## PreWork
+### scrapy
+- crawl recipes from [ASIAN FOOD NETWORK](https://asianfoodnetwork.com/en/recipes/cuisine/chinese/chinese-style-scrambled-eggs-with-tomato.html) by `scrapy`
+#### git submodule management
+##### how to initialize scrapy submodule
+```
+git submodule init
+```
+##### how to update scrapy submodule
+```
+git submodule update --remote
+```
 
-### raw data example
+### dataset
+#### raw data example
 - download `layer1.json` from [Recipe1M+](http://pic2recipe.csail.mit.edu/) (non-commercial use only)
 ```
 [
@@ -17,8 +29,8 @@
 ]
 ```
 
-### filtered data example
-- `python3 filter.py --input path2downloaded_file --output path2output_file`
+#### filtered data example
+- `python3 filter.py --input downloaded_file --output output_file`
 ```
 [
     {
@@ -31,8 +43,9 @@
 ]
 ```
 
-## Query - recipes
-- all
+## Query
+### recipes
+#### all recipes
 ```
 query {
     recipes {
@@ -45,7 +58,8 @@ query {
 }
 ```
 
-- with `ingredients`
+#### recipes with `ingredients`
+- all recipes
 ```
 query {
     recipes (ingredients: null) {
@@ -57,6 +71,7 @@ query {
     }
 }
 ```
+- no recipes
 ```
 query {
     recipes (ingredients: []) {
@@ -68,6 +83,7 @@ query {
     }
 }
 ```
+- target recipes
 ```
 query {
     recipes (ingredients: ["water", "cheese"]) {
@@ -80,7 +96,8 @@ query {
 }
 ```
 
-## Query - recipe
+### recipe
+- by `id`
 ```
 query {
     recipe (id: "000033e39b") {
@@ -92,4 +109,3 @@ query {
     }
 }
 ```
-
