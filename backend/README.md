@@ -3,7 +3,7 @@
 ## PreWork
 
 ### raw data example
-- Download `layer1.json` from [Recipe1M+](http://pic2recipe.csail.mit.edu/) (non-commercial use only)
+- download `layer1.json` from [Recipe1M+](http://pic2recipe.csail.mit.edu/) (non-commercial use only)
 ```
 [
     {
