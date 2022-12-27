@@ -1,19 +1,26 @@
 # 1111 Web Programming Final Project Backend
 
 ## PreWork
-### scrapy
-- crawl recipes from [ASIAN FOOD NETWORK](https://asianfoodnetwork.com/en/recipes/cuisine/chinese/chinese-style-scrambled-eggs-with-tomato.html) by `scrapy`
+### 1. scrapy
+- crawl recipes from [asian food network](https://asianfoodnetwork.com/) by `scrapy`
 #### git submodule management
-##### how to initialize scrapy submodule
+- how to initialize scrapy submodule
 ```
 git submodule init
 ```
-##### how to update scrapy submodule
+- how to update scrapy submodule
 ```
 git submodule update --remote
 ```
+- reference
+```
+https://blog.puckwang.com/posts/2020/git-submodule-vs-subtree/
+```
+```
+http://shachiku.life/posts/difference-between-subtree-and-submodule/
+```
 
-### dataset
+### 2. dataset
 #### raw data example
 - download `layer1.json` from [Recipe1M+](http://pic2recipe.csail.mit.edu/) (non-commercial use only)
 ```
@@ -44,7 +51,7 @@ git submodule update --remote
 ```
 
 ## Query
-### recipes
+### 1. recipes
 #### all recipes
 ```
 query {
@@ -96,7 +103,7 @@ query {
 }
 ```
 
-### recipe
+### 2. recipe
 - by `id`
 ```
 query {
