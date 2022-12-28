@@ -15,7 +15,7 @@ const Result = () => {
           <Grid item>
             <RecipeCard
               imageURL={require("../devFiles/img/4405dc8988.jpg")}
-              title={"Chocolate or something"}
+              title={"Chocolate cookie"}
               steps={["Melt the chocolate", "..."]}
               tags={["healthy", "vegan", "easy2make"]}
             />
