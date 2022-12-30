@@ -33,7 +33,7 @@ git push
 }
 ```
 #### 2. filtered data example
-- `python3 filter.py --input downloaded_file --output output_file`
+- extracted by `filter.py`
 ```
 {
     "id": "000095fc1d",
@@ -45,21 +45,19 @@ git push
 ```
 
 ## Query
-### 1. recipes
-#### query all recipes
+### 1. allrecipes
 ```
 query {
-    recipes {
+    allrecipes {
         id
         title
         image_url
         ingredients
         instructions {
             title
-            content
+            contents
         }
         tags
-        difficulty
         time {
             preparation
             cook
@@ -69,8 +67,29 @@ query {
 }
 ```
 
-#### query recipes by `ingredients`
-- no recipes
+### 2. recipes
+#### invalid query
+```
+query {
+    recipes {
+        id
+        title
+        image_url
+        ingredients
+        instructions {
+            title
+            contents
+        }
+        tags
+        time {
+            preparation
+            cook
+            cleanup
+        }
+    }
+}
+```
+#### no recipes
 ```
 query {
     recipes (ingredients: []) {
@@ -80,10 +99,9 @@ query {
         ingredients
         instructions {
             title
-            content
+            contents
         }
         tags
-        difficulty
         time {
             preparation
             cook
@@ -92,7 +110,7 @@ query {
     }
 }
 ```
-- recipes with `sugar` included in `ingredients`
+#### recipes with `sugar` included in `ingredients`
 ```
 query {
     recipes (ingredients: ["sugar"]) {
@@ -102,10 +120,9 @@ query {
         ingredients
         instructions {
             title
-            content
+            contents
         }
         tags
-        difficulty
         time {
             preparation
             cook
@@ -119,17 +136,16 @@ query {
 #### query a recipe by `id`
 ```
 query {
-    recipe (id: "908b26ad87ef11eda55847b92c10f584") {
+    recipe (id: "7673aebe887111eda55847b92c10f584") {
         id
         title
         image_url
         ingredients
         instructions {
             title
-            content
+            contents
         }
         tags
-        difficulty
         time {
             preparation
             cook

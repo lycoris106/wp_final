@@ -1,31 +1,25 @@
 const Query = {
-    recipes: async (parent, {ingredients}, {recipeModel}) => {
-        // let projection = "id title image_url";
-        // if (ingredients)
-        //     projection += " ingredients";
-
-        // const recipes = await recipeModel.find({}, projection);
-
+    allrecipes: async (parent, {}, {recipeModel}) => {
         const recipes = await recipeModel.find({});
+        return recipes;
+    },
 
-        if (!ingredients)
-            return recipes;
+    recipes: async (parent, {ingredients}, {recipeModel}) => {
+        const projection = "id title image_url ingredients tags";
+        const recipes = await recipeModel.find({}, projection);
 
-        if (ingredients) {
-            return recipes.filter((recipe) => {
-                for (const str of recipe.ingredients) {
-                    for (var key of ingredients) {
-                        if (str.includes(key))
-                            return true;
-                    }
+        return recipes.filter((recipe) => {
+            for (const description of recipe.ingredients) {
+                for (var ingredient of ingredients) {
+                    if (description.includes(ingredient))
+                        return true;
                 }
-                return false;
-            })
-            // .map((recipe) => {
-            //     recipe.ingredients = undefined;
-            //     return recipe;
-            // });
-        }
+            }
+            return false;
+        }).map((recipe) => {
+            recipe.ingredients = null;
+            return recipe;
+        });
     },
 
     recipe: async (parent, {id}, {recipeModel}) => {

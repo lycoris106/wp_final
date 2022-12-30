@@ -1,27 +1,27 @@
 type Instruction {
-    title: String!
-    content: [String!]!
+    title: String
+    contents: [String!]
 }
 
 type Time {
-    preparation: String!
-    cook: String!
-    cleanup: String!
+    preparation: String
+    cook: String
+    cleanup: String
 }
 
 type Recipe {
     id: ID!
-    title: String!
-    content: String!
-    image_url: String!
-    ingredients: [String!]!
-    instructions: [Instruction!]!
-    tags: [String!]!
-    difficulty: String
+    title: String
+    content: String
+    image_url: String
+    ingredients: [String]
+    instructions: [Instruction]
+    tags: [String!]
     time: Time
 }
 
 type Query {
-    recipes(ingredients: [String]): [Recipe]!
-    recipe(id: ID!): Recipe!
+    allrecipes: [Recipe!]!
+    recipes(ingredients: [String]!): [Recipe]!
+    recipe(id: ID!): Recipe
 }
