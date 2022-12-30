@@ -49,110 +49,116 @@ const Search = () => {
   return (
     <Layout>
       <Box sx={{ display: "flex" }}>
-        <Card sx={{ width: '50vw', backgroundColor: "#fcf9f4", borderRadius: '16px', px:1 }}>
-          <CardHeader
-            title="What's in your fridge?"
-          />
-          <Divider />
-          <Stack direction="row" spacing={2}>
-            <Button
-              value={'All'}
-              variant={('All' === filter)? "contained" : "default" }
-              onClick={handleFilterChange}
-            >All</Button>
-            {
-              Object.keys(colorMap).map((key) => {
-                return (
-                  <Button
-                    key={'filter'+key}
-                    value={key}
-                    color="primary"
-                    variant={(key === filter)? "contained" : "default"}
-                    onClick={ handleFilterChange }
-                  >
-                    {key}
-                  </Button>
-                );
-              })
-            }
-          </Stack>
-          <Divider />
-          <CardContent>
-            <Grid
-              container
-              spacing={1}
-              sx={{ m: 1 }}
-            >
-              {
-                ingredData.map((ingred) => {
-                  let color = undefined;
-                  ingred.type.forEach((clas) => {
-                    if (clas in colorMap) {
-                      color = colorMap[clas];
-                      return
-                    }
-                  })
-                  if (filter === 'All' || ingred.type.includes(filter)) {
+        <Grid container spacing={2}>
+          <Grid xs={7}>
+            <Card sx={{ backgroundColor: "#fcf9f4", borderRadius: '16px', px:1 }}>
+              <CardHeader
+                title="What's in your fridge?"
+              />
+              <Divider />
+              <Stack direction="row" spacing={2}>
+                <Button
+                  value={'All'}
+                  variant={('All' === filter)? "contained" : "default" }
+                  onClick={handleFilterChange}
+                >All</Button>
+                {
+                  Object.keys(colorMap).map((key) => {
                     return (
-                      <Grid key={'grid'+ingred.id}
-                        item
+                      <Button
+                        key={'filter'+key}
+                        value={key}
+                        color="primary"
+                        variant={(key === filter)? "contained" : "default"}
+                        onClick={ handleFilterChange }
                       >
-                        <Chip key={'chip'+ingred.id} label={ingred.name}
-                          variant={selected.has(ingred.id)? "outlined" : "outlined"}
-                          color={color} sx={{ m: 0.6, backgroundColor: selected.has(ingred.id)? "#b9b9b9" : "default" }}
-                          onClick={() => handleSelectionChanged(ingred.id)}
-                        />
-                      </Grid>
+                        {key}
+                      </Button>
                     );
+                  })
+                }
+              </Stack>
+              <Divider />
+              <CardContent>
+                <Grid
+                  container
+                  spacing={1}
+                  sx={{ m: 1 }}
+                >
+                  {
+                    ingredData.map((ingred) => {
+                      let color = undefined;
+                      ingred.type.forEach((clas) => {
+                        if (clas in colorMap) {
+                          color = colorMap[clas];
+                          return
+                        }
+                      })
+                      if (filter === 'All' || ingred.type.includes(filter)) {
+                        return (
+                          <Grid key={'grid'+ingred.id}
+                            item
+                          >
+                            <Chip key={'chip'+ingred.id} label={ingred.name}
+                              variant={selected.has(ingred.id)? "outlined" : "outlined"}
+                              color={color} sx={{ m: 0.6, backgroundColor: selected.has(ingred.id)? "#b9b9b9" : "default" }}
+                              onClick={() => handleSelectionChanged(ingred.id)}
+                            />
+                          </Grid>
+                        );
+                      }
+
+                      return;
+                    })
                   }
 
-                  return;
-                })
-              }
-
-            </Grid>
-          </CardContent>
-        </Card>
-        <Card sx={{ maxHeight: '80vh', width: '20vw', backgroundColor: "#fcf9f4", borderRadius: '16px', mx: 8, px: 1}}>
-          <CardHeader
-            title="My ingredients"
-          />
-          <Divider />
-          <CardContent>
-            <Grid
-              container
-              spacing={1}
-              sx={{ m: 1 }}
-            >
-              {
-                ingredData.map((ingred) => {
-                  if (selected.has(ingred.id)) {
-                    return (
-                      <Grid key={'grid_'+ingred.id}
-                        item
-                      >
-                        <Chip key={'chip_'+ingred.id} label={ingred.name}
-                          variant="outlined"
-                          sx={{ m: 0.6 }}
-                        />
-                      </Grid>
-                    )
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid xs={5}>
+            <Card sx={{ maxHeight: '80vh', backgroundColor: "#fcf9f4", borderRadius: '16px', mx: 8, px: 1}}>
+              <CardHeader
+                title="My ingredients"
+              />
+              <Divider />
+              <CardContent>
+                <Grid
+                  container
+                  spacing={1}
+                  sx={{ m: 1 }}
+                >
+                  {
+                    ingredData.map((ingred) => {
+                      if (selected.has(ingred.id)) {
+                        return (
+                          <Grid key={'grid_'+ingred.id}
+                            item
+                          >
+                            <Chip key={'chip_'+ingred.id} label={ingred.name}
+                              variant="outlined"
+                              sx={{ m: 0.6 }}
+                            />
+                          </Grid>
+                        )
+                      }
+                    })
                   }
-                })
-              }
-            </Grid>
-          </CardContent>
-          <Divider />
-          <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <Button
-              color="primary"
-              fullWidth
-              variant="contained"
-            >
-              Search
-            </Button>
-          </CardActions>
-        </Card>
+                </Grid>
+              </CardContent>
+              <Divider />
+              <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Button
+                  color="primary"
+                  fullWidth
+                  variant="contained"
+                >
+                  Search
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
       </Box>
     </Layout>
   );

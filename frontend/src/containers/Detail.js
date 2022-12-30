@@ -1,15 +1,93 @@
 import { useContext, useEffect } from "react";
 import Layout from "../components/Layout/Layout.js";
-import Instruction from "../components/Instruction.js";
-import { Paper, Container, Typography, CardMedia, Divider } from "@mui/material";
+import InstructList from "../components/InstructList.js";
+import { styled } from '@mui/material/styles';
+import {
+  Box,
+  Container,
+  Typography,
+  CardMedia,
+  Card,
+  Grid,
+  Paper,
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Button,
+  Chip
+} from "@mui/material";
+
+import CheckIcon from '@mui/icons-material/Check';
+
+const StyledPaper = styled(Paper, {
+  shouldForwardProp: (props) => props !== 'bgColor',
+})(({theme, ...props}) => {
+  console.log(props);
+  return {
+    backgroundColor: props.bgColor,
+    padding: 10,
+    marginBottom: 30
+  };
+});
 
 const Detail = () => {
+
   const title = "Chocolate"
+  const ingredList = ["100 grams of choocolate", "some sugar", "100 ml of milk"]
   const imgURL = require("../devFiles/img/4405dc8988.jpg");
-  const instructions = ["Melt the chocolate", "..."];
+  const instructions = ["Melt the chocolate", "Add milk and sugar", "..."];
+
   return (
     <Layout>
-      <Paper  sx={{ display: "flex", flexDirection: "column", rowGap: "10px", bgcolor: "#fcf9f4", borderRadius: "16px" }} >
+      <Grid container spacing={1}>
+        <Grid item xs={8}>
+          <Card sx={{ width: 700, height:650 }}>
+            <Typography gutterBottom variant="h3" component="div" align="center" sx={{ fontWeight: 'bold' }}>
+              {title}
+            </Typography>
+            <CardMedia
+              component="img"
+              image= {imgURL}
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={4}>
+          <StyledPaper elevation={2} bgColor={'default'}>
+            <Chip label={'Customized'}
+              color={"primary"} sx={{ m: 0.6 }}
+            />
+            {/* <Typography align="center" variant="h5" color="primary" gutterBottom>
+              Customized
+            </Typography> */}
+          </StyledPaper>
+          <StyledPaper elevation={2} bgColor={'#f5f5f5'}>
+            <Typography align="center" variant="h5" gutterBottom>
+              Ingredient List
+            </Typography>
+            <Divider />
+            <List>
+              <ListItem>
+                <ListItemIcon>
+                  <CheckIcon sx={{ color: "orange" }}/>
+                </ListItemIcon>
+                <ListItemText primary={ingredList[0]} />
+              </ListItem>
+              <ListItem>
+                <ListItemText inset primary={ingredList[1]} />
+              </ListItem>
+            </List>
+          </StyledPaper>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box sx={{ mt: 3 }}>
+            <InstructList instructions={instructions} />
+          </Box>
+        </Grid>
+      </Grid>
+      {/* <Container  sx={{ display: "flex", flexDirection: "column", rowGap: "10px" }} >
       <Container maxWidth="md" sx={{
         display: 'flex',
         justifyContent: "space-between",
@@ -34,7 +112,7 @@ const Detail = () => {
           <Instruction key={index} instruction={ins} index={index} />
         ))}
       </Container>
-      </Paper>
+      </Container> */}
     </Layout>
   );
 }
