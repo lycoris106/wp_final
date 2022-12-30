@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
+import { Link } from "react-router-dom";
 import { color, Container } from "@mui/system";
 import {
   Box,
@@ -14,6 +15,7 @@ import {
   CardContent,
   CardActions
 } from '@mui/material';
+
 
 import ingredData from '../devFiles/ingredData.json';
 
@@ -46,11 +48,17 @@ const Search = () => {
     setFilter(e.currentTarget.value);
   };
 
+  const handleIngredDelete = (id) => {
+    const newSet = new Set(selected);
+    newSet.delete(id);
+    setSelected(newSet);
+  }
+
   return (
     <Layout>
       <Box sx={{ display: "flex" }}>
         <Grid container spacing={2}>
-          <Grid xs={7}>
+          <Grid item xs={7}>
             <Card sx={{ backgroundColor: "#fcf9f4", borderRadius: '16px', px:1 }}>
               <CardHeader
                 title="What's in your fridge?"
@@ -116,7 +124,7 @@ const Search = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid xs={5}>
+          <Grid item xs={5}>
             <Card sx={{ maxHeight: '80vh', backgroundColor: "#fcf9f4", borderRadius: '16px', mx: 8, px: 1}}>
               <CardHeader
                 title="My ingredients"
@@ -138,6 +146,7 @@ const Search = () => {
                             <Chip key={'chip_'+ingred.id} label={ingred.name}
                               variant="outlined"
                               sx={{ m: 0.6 }}
+                              onDelete={() => handleIngredDelete(ingred.id)}
                             />
                           </Grid>
                         )
@@ -148,13 +157,18 @@ const Search = () => {
               </CardContent>
               <Divider />
               <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Button
-                  color="primary"
-                  fullWidth
-                  variant="contained"
+                <Link
+                  to="/result" state={{ ingredList: ["water"] }}
+                  style={{ textDecoration: 'none' }}
                 >
-                  Search
-                </Button>
+                  <Button
+                    color="primary"
+                    fullWidth
+                    variant="contained"
+                  >
+                    Search
+                  </Button>
+                </Link>
               </CardActions>
             </Card>
           </Grid>

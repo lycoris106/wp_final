@@ -18,7 +18,7 @@ import { styled } from '@mui/material/styles';
 //   };
 // });
 
-export default function RecipeCard({imageURL, title, steps, tags}) {
+export default function RecipeCard({imageURL, title, tags}) {
   const tagDictList = [
     {contents: ["healthy", "very healthy"], color: "primary"},
     {contents: ["vegan"], color: "primary"},
@@ -28,11 +28,11 @@ export default function RecipeCard({imageURL, title, steps, tags}) {
   return (
     <Card sx={{ width: 340, height:350 }}>
       <CardActionArea >
-        <CardMedia
+        {/* <CardMedia
           component="img"
           height="200"
           image= {imageURL}
-        />
+        /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" align="center" sx={{ fontWeight: 'bold' }}>
             {title}
