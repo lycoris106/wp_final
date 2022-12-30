@@ -101,13 +101,15 @@ const Detail = () => {
             {"Customized?"}
           </Typography>
       </Container>
+      <Divider variant="middle" />
       <Container maxWidth="md" sx={{ display: 'flex', justifyContent: "space-between" }}>
         <CardMedia component="img" image={imgURL} sx={{ maxWidth: "50%" }}/>
         <Typography variant="h5" component="div">other infomations</Typography>
       </Container>
-      <Container sx={{ display: "flex", flexDirection: "column", rowGap: "1em"}}>
+      <Divider variant="middle" />
+      <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", rowGap: "1em"}}>
         {instructions.map((ins, index) => (
-          <Instruction instruction={ins} index={index} />
+          <Instruction key={index} instruction={ins} index={index} />
         ))}
       </Container>
       </Container> */}
