@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import Layout from "../components/Layout/Layout.js";
 import Instruction from "../components/Instruction.js";
-import { Box, Container, Typography, CardMedia } from "@mui/material";
+import { Paper, Container, Typography, CardMedia, Divider } from "@mui/material";
 
 const Detail = () => {
   const title = "Chocolate"
@@ -9,8 +9,7 @@ const Detail = () => {
   const instructions = ["Melt the chocolate", "..."];
   return (
     <Layout>
-      { /* todo */ }
-      <Container  sx={{ display: "flex", flexDirection: "column", rowGap: "10px" }} >
+      <Paper  sx={{ display: "flex", flexDirection: "column", rowGap: "10px", bgcolor: "#fcf9f4", borderRadius: "16px" }} >
       <Container maxWidth="md" sx={{
         display: 'flex',
         justifyContent: "space-between",
@@ -24,16 +23,18 @@ const Detail = () => {
             {"Customized?"}
           </Typography>
       </Container>
+      <Divider variant="middle" />
       <Container maxWidth="md" sx={{ display: 'flex', justifyContent: "space-between" }}>
         <CardMedia component="img" image={imgURL} sx={{ maxWidth: "50%" }}/>
         <Typography variant="h5" component="div">other infomations</Typography>
       </Container>
-      <Container sx={{ display: "flex", flexDirection: "column", rowGap: "1em"}}>
+      <Divider variant="middle" />
+      <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", rowGap: "1em"}}>
         {instructions.map((ins, index) => (
-          <Instruction instruction={ins} index={index} />
+          <Instruction key={index} instruction={ins} index={index} />
         ))}
       </Container>
-      </Container>
+      </Paper>
     </Layout>
   );
 }

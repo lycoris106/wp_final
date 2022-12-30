@@ -7,6 +7,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Search from './Search';
 import Result from './Result';
 import Detail from "./Detail";
+import Submit from "./Submit";
 
 const theme = createTheme({
   palette: {
@@ -35,6 +36,8 @@ function App() {
         <Route path="/result" element={<Result />} />
         { /* Page for testing Detail.js */}
         <Route path="/detail" element={<Detail />} />
+        { /* Page for testing Submit.js */ }
+        <Route path="/submit" element={<Submit />} />
 
         <Route path="/" element={<Navigate to="/search" />} />
       </Routes>
