@@ -1,15 +1,17 @@
 # 1111 Web Programming Final Project Backend
 
 ## PreWork
-### 1. scrapy
+### scrapy
 - crawl recipes from [Asian Food Network](https://asianfoodnetwork.com/) by `scrapy`
-#### git submodule management
-- update to version recorded in current repository (collaborator)
+#### 1. data example
+- refer to submodule `scraper`
+#### 2. git submodule management
+- update to the version recorded in current repository (for collaborator)
 ```
 git pull --rebase
 git submodule update --init
 ```
-- update to the latest version of remote submodule (developer)
+- update to the latest version of remote submodule repository (for developer)
 ```
 git submodule update --remote
 git add .
@@ -17,8 +19,8 @@ git commit -m "..."
 git push
 ```
 
-### 2. dataset
-#### raw data example
+### dataset (deprecated)
+#### 1. raw data example
 - download `layer1.json` from [Recipe1M+](http://pic2recipe.csail.mit.edu/) (non-commercial use only)
 ```
 {
@@ -30,8 +32,7 @@ git push
     "instructions": [{"text": "Layer all ingredients in a serving dish."}, {...}]
 }
 ```
-
-#### filtered data example
+#### 2. filtered data example
 - `python3 filter.py --input downloaded_file --output output_file`
 ```
 {
@@ -45,67 +46,95 @@ git push
 
 ## Query
 ### 1. recipes
-#### all recipes
+#### query all recipes
 ```
 query {
     recipes {
         id
         title
-        url
-        ingredients # null
-        instructions # null
+        image_url
+        ingredients
+        instructions {
+            title
+            content
+        }
+        tags
+        difficulty
+        time {
+            preparation
+            cook
+            cleanup
+        }
     }
 }
 ```
 
-#### recipes with `ingredients`
-- all recipes
-```
-query {
-    recipes (ingredients: null) {
-        id
-        title
-        url
-        ingredients # null
-        instructions # null
-    }
-}
-```
+#### query recipes by `ingredients`
 - no recipes
 ```
 query {
     recipes (ingredients: []) {
         id
         title
-        url
-        ingredients # null
-        instructions # null
+        image_url
+        ingredients
+        instructions {
+            title
+            content
+        }
+        tags
+        difficulty
+        time {
+            preparation
+            cook
+            cleanup
+        }
     }
 }
 ```
-- target recipes
+- recipes with `sugar` included in `ingredients`
 ```
 query {
-    recipes (ingredients: ["water", "cheese"]) {
+    recipes (ingredients: ["sugar"]) {
         id
         title
-        url
-        ingredients # null
-        instructions # null
+        image_url
+        ingredients
+        instructions {
+            title
+            content
+        }
+        tags
+        difficulty
+        time {
+            preparation
+            cook
+            cleanup
+        }
     }
 }
 ```
 
 ### 2. recipe
-- by `id`
+#### query a recipe by `id`
 ```
 query {
-    recipe (id: "000033e39b") {
+    recipe (id: "908b26ad87ef11eda55847b92c10f584") {
         id
         title
-        url
+        image_url
         ingredients
-        instructions
+        instructions {
+            title
+            content
+        }
+        tags
+        difficulty
+        time {
+            preparation
+            cook
+            cleanup
+        }
     }
 }
 ```

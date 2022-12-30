@@ -1,9 +1,24 @@
+type Instruction {
+    title: String!
+    content: [String!]!
+}
+
+type Time {
+    preparation: String!
+    cook: String!
+    cleanup: String!
+}
+
 type Recipe {
     id: ID!
     title: String!
-    url: String!
-    ingredients: [String]
-    instructions: [String]
+    content: String!
+    image_url: String!
+    ingredients: [String!]!
+    instructions: [Instruction!]!
+    tags: [String!]!
+    difficulty: String
+    time: Time
 }
 
 type Query {

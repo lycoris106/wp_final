@@ -1,10 +1,12 @@
 const Query = {
     recipes: async (parent, {ingredients}, {recipeModel}) => {
-        let projection = "id title url";
-        if (ingredients)
-            projection += " ingredients";
+        // let projection = "id title image_url";
+        // if (ingredients)
+        //     projection += " ingredients";
 
-        const recipes = await recipeModel.find({}, projection);
+        // const recipes = await recipeModel.find({}, projection);
+
+        const recipes = await recipeModel.find({});
 
         if (!ingredients)
             return recipes;
@@ -19,10 +21,10 @@ const Query = {
                 }
                 return false;
             })
-            .map((recipe) => {
-                recipe.ingredients = undefined;
-                return recipe;
-            });
+            // .map((recipe) => {
+            //     recipe.ingredients = undefined;
+            //     return recipe;
+            // });
         }
     },
 
