@@ -26,13 +26,14 @@ const StyledPaper = styled(Paper)(({theme, ...props}) => {
 const Detail = () => {
 
   const title = "Chocolate"
+  const ingredList = ["100 grams of choocolate", "some sugar", "100 ml of milk"]
   const imgURL = require("../devFiles/img/4405dc8988.jpg");
   const instructions = ["Melt the chocolate", "..."];
 
   return (
     <Layout>
-      <Grid container spacing={2}>
-        <Grid xs={9}>
+      <Grid container spacing={1}>
+        <Grid item xs={8}>
           <Card sx={{ width: 700, height:650 }}>
             <Typography gutterBottom variant="h3" component="div" align="center" sx={{ fontWeight: 'bold' }}>
               {title}
@@ -43,7 +44,7 @@ const Detail = () => {
             />
           </Card>
         </Grid>
-        <Grid xs={3}>
+        <Grid item xs={4}>
           <StyledPaper elevation={2} >
             <Typography variant="h5" gutterBottom>
               Ingredient List
