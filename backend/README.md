@@ -2,52 +2,45 @@
 
 ## PreWork
 ### 1. scrapy
-- crawl recipes from [asian food network](https://asianfoodnetwork.com/) by `scrapy`
+- crawl recipes from [Asian Food Network](https://asianfoodnetwork.com/) by `scrapy`
 #### git submodule management
-- how to initialize scrapy submodule
+- update to version recorded in current repository (collaborator)
 ```
-git submodule init
+git pull --rebase
+git submodule update --init
 ```
-- how to update scrapy submodule
+- update to the latest version of remote submodule (developer)
 ```
 git submodule update --remote
-```
-- reference
-```
-https://blog.puckwang.com/posts/2020/git-submodule-vs-subtree/
-```
-```
-http://shachiku.life/posts/difference-between-subtree-and-submodule/
+git add .
+git commit -m "..."
+git push
 ```
 
 ### 2. dataset
 #### raw data example
 - download `layer1.json` from [Recipe1M+](http://pic2recipe.csail.mit.edu/) (non-commercial use only)
 ```
-[
-    {
-        "ingredients": [{"text": "8 ounces, weight Light Fat Free Vanilla Yogurt (I Used Activia)"}, {...}],
-        "url": "http://tastykitchen.com/recipes/breakfastbrunch/yogurt-parfaits/",
-        "partition": "train",
-        "title": "Yogurt Parfaits",
-        "id": "000095fc1d",
-        "instructions": [{"text": "Layer all ingredients in a serving dish."}, {...}]
-    },
-]
+{
+    "ingredients": [{"text": "8 ounces, weight Light Fat Free Vanilla Yogurt (I Used Activia)"}, {...}],
+    "url": "http://tastykitchen.com/recipes/breakfastbrunch/yogurt-parfaits/",
+    "partition": "train",
+    "title": "Yogurt Parfaits",
+    "id": "000095fc1d",
+    "instructions": [{"text": "Layer all ingredients in a serving dish."}, {...}]
+}
 ```
 
 #### filtered data example
 - `python3 filter.py --input downloaded_file --output output_file`
 ```
-[
-    {
-        "id": "000095fc1d",
-        "title": "Yogurt Parfaits",
-        "url": "http://tastykitchen.com/recipes/breakfastbrunch/yogurt-parfaits/",
-        "ingredients": ["8 ounces, weight Light Fat Free Vanilla Yogurt (I Used Activia)", "..."],
-        "instructions": ["Layer all ingredients in a serving dish.", "..."]
-    },
-]
+{
+    "id": "000095fc1d",
+    "title": "Yogurt Parfaits",
+    "url": "http://tastykitchen.com/recipes/breakfastbrunch/yogurt-parfaits/",
+    "ingredients": ["8 ounces, weight Light Fat Free Vanilla Yogurt (I Used Activia)", "..."],
+    "instructions": ["Layer all ingredients in a serving dish.", "..."]
+}
 ```
 
 ## Query
