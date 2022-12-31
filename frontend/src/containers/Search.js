@@ -131,29 +131,21 @@ const Search = () => {
               />
               <Divider />
               <CardContent>
-                <Grid
-                  container
-                  spacing={1}
-                  sx={{ m: 1 }}
-                >
+                <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
                   {
                     ingredData.map((ingred) => {
                       if (selected.has(ingred.id)) {
                         return (
-                          <Grid key={'grid_'+ingred.id}
-                            item
-                          >
-                            <Chip key={'chip_'+ingred.id} label={ingred.name}
-                              variant="outlined"
-                              sx={{ m: 0.6 }}
-                              onDelete={() => handleIngredDelete(ingred.id)}
-                            />
-                          </Grid>
+                          <Chip key={'chip_'+ingred.id} label={ingred.name}
+                            variant="outlined"
+                            sx={{ m: 0.6 }}
+                            onDelete={() => handleIngredDelete(ingred.id)}
+                          />
                         )
                       }
                     })
                   }
-                </Grid>
+                </Box>
               </CardContent>
               <Divider />
               <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

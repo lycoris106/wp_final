@@ -30,7 +30,7 @@ export default function RecipeCard({imageURL, title, tags}) {
   ]
 
   return (
-    <Card sx={{ width: 340, height: 450 }}>
+    <Card sx={{ width: 340, height: 380 }}>
       <CardActionArea >
         <CardMedia
           component="img"
@@ -41,12 +41,7 @@ export default function RecipeCard({imageURL, title, tags}) {
           <Typography gutterBottom variant="h5" component="div" align="center" sx={{ fontWeight: 'bold' }}>
             {title}
           </Typography>
-          <Box>
-          <Grid
-            container
-            spacing={1}
-            sx={{ m: 1 }}
-          >
+          <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
             {
               tags.map((tag, ind) => {
                 let i = -1;
@@ -59,11 +54,7 @@ export default function RecipeCard({imageURL, title, tags}) {
                 });
                 if (i !== -1) {
                   return (
-                    <Grid key={'grid_'+ind}
-                      item
-                    >
-                      <Chip key={'chip'+ind} label={tag} color={tagDictList[i].color} variant="outlined" sx={{ m: 0.6 }} />
-                    </Grid>
+                    <Chip key={'chip'+ind} label={tag} color={tagDictList[i].color} variant="outlined" sx={{ m: 0.6 }} />
                   );
                 }
                 return (
@@ -71,8 +62,8 @@ export default function RecipeCard({imageURL, title, tags}) {
                 );
               })
             }
-          </Grid>
           </Box>
+
 
           {/* <Typography variant="body2" color="text.secondary" align="center">
             {"description"}
