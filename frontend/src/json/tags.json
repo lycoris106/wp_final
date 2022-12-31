@@ -1,36 +1,36 @@
 {
-  "region":
-    [
-      "Indonesian", "Chinese", "Filipino", "Indian", "Malaysian", "Thai", "Korean", "Japanese",
-      "Singaporean", "Vietnamese", "Peranakan", "Malaysia", "Middle-Eastern"
-    ],
-  "difficulty":
-    [
-      "Esay", "Medium", "Hard"
-    ],
-  "time":
-    [
-          "Above 60 mins", "Under 30 mins", "Under 45 mins", "Under 60 mins", "Under 15 mins"
-    ],
-  "meal":
-    [
-      "Lunch", "Dinner", "Breakfast", "Appetizers"
-    ],
-  "non_meal":
-    [
-      "Dessert", "Snacks", "Drinks", "Baked Goods", "Bread", "Salad", "Cake", "Cookies"
-    ],
-  "diet":
-    [
-      "Halal", "Vegetarian", "Keto", "Nonya", "Vegan", "Low Carb", "Greens", "Traditional", "Alcoholic", "Special Diets Keto"
-    ],
-  "flavor":
-    [
-      "Savory", "Spicy", "Sweet", "Fruity", "Sour", "Sweet and sour", "Mala"
-    ],
-  "holiday":
-    [
-      "Chinese New Year", "Hari Raya", "Ramadan", "Mid-Autumn Festival", "Christmas"
-    ]
-
+	"region":
+		[
+			"Indonesian", "Chinese", "Filipino", "Indian", "Malaysian", "Thai", "Korean", "Japanese", 
+			"Singaporean", "Vietnamese", "Peranakan", "Malaysia", "Middle-Eastern"
+		],
+	"difficulty":
+		[
+			"Easy", "Medium", "Hard"
+		],
+	"time":
+		[
+			"Above 60 mins", "Under 30 mins", "Under 45 mins", "Under 60 mins", "Under 15 mins"
+		],
+	"meal":
+		[
+			"Lunch", "Dinner", "Breakfast", "Appetizers"
+		],
+	"non_meal":
+		[
+			"Dessert", "Snacks", "Drinks", "Baked Goods", "Bread", "Salad", "Cake", "Cookies"
+		],
+	"diet":
+		[
+			"Halal", "Vegetarian", "Keto", "Nonya", "Vegan", "Low Carb", "Greens", "Traditional",
+			"Alcoholic", "Special Diets Keto"
+		],
+	"flavor":
+		[
+			"Savory", "Spicy", "Sweet", "Fruity", "Sour", "Sweet and sour", "Mala"
+		],
+	"holiday":
+		[
+			"Chinese New Year", "Hari Raya", "Ramadan", "Mid-Autumn Festival", "Christmas"
+		]
 }
