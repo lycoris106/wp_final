@@ -3,19 +3,19 @@ import mongoose from "mongoose";
 const recipeSchema = new mongoose.Schema(
     {
         id: { type: String, required: true, unique: true},
-        title: { type: String, required: true, unique: true},
-        content: { type: String, required: true},
-        image_url: { type: String, required: true},
-        ingredients: { type: [String], required: true},
+        title: { type: String, required: true},
+        content: { type: String, required: false},
+        image_url: { type: String, required: false},
+        ingredients: { type: [String], required: false},
         instructions: [{ 
-            title: { type: String, required: true},
-            contents: { type: [String], required: true}
+            title: { type: String, required: false},
+            contents: { type: [String], required: false}
         }],
-        tags: { type: [String], required: true},
+        tags: { type: [String], required: false},
         time: {
-            preparation: { type: String, required: true},
-            cook: { type: String, required: true},
-            cleanup: { type: String, required: true},
+            preparation: { type: String, required: false},
+            cook: { type: String, required: false},
+            cleanup: { type: String, required: false},
         }
     },
     {

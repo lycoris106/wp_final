@@ -45,7 +45,7 @@ git push
 ```
 
 ## Query
-### 1. allrecipes
+### 1. query allrecipes
 ```
 query {
     allrecipes {
@@ -67,7 +67,8 @@ query {
 }
 ```
 
-### 2. recipes
+### 2. query recipes
+- only return `id`, `title`, `image_url`, `tags` fields with value
 #### invalid query
 ```
 query {
@@ -89,7 +90,7 @@ query {
     }
 }
 ```
-#### no recipes
+#### query no recipes
 ```
 query {
     recipes (ingredients: []) {
@@ -110,7 +111,7 @@ query {
     }
 }
 ```
-#### recipes with `sugar` included in `ingredients`
+#### query recipes with `sugar` included in `ingredients`
 ```
 query {
     recipes (ingredients: ["sugar"]) {
@@ -132,8 +133,29 @@ query {
 }
 ```
 
-### 2. recipe
-#### query a recipe by `id`
+### 2. query recipe
+#### `id` dose not exist
+```
+query {
+    recipe (id: "dooes not exist") {
+        id
+        title
+        image_url
+        ingredients
+        instructions {
+            title
+            contents
+        }
+        tags
+        time {
+            preparation
+            cook
+            cleanup
+        }
+    }
+}
+```
+#### `id` exists
 ```
 query {
     recipe (id: "7673aebe887111eda55847b92c10f584") {
@@ -151,6 +173,67 @@ query {
             cook
             cleanup
         }
+    }
+}
+```
+
+## Mutation
+### 1. matation createRecipe
+```
+mutation {
+    createRecipe (input: {
+        id: "create"
+        title: "Recipe for creating"
+    }) {
+        id
+        title
+    		content
+        image_url
+        ingredients
+        instructions {
+            title
+            contents
+        }
+        tags
+        time {
+            preparation
+            cook
+            cleanup
+        }
+    }
+}
+```
+
+### 2. matation updateRecipe
+```
+mutation {
+    updateRecipe (input: {
+        id: "update"
+    }) {
+        id
+        title
+    		content
+        image_url
+        ingredients
+        instructions {
+            title
+            contents
+        }
+        tags
+        time {
+            preparation
+            cook
+            cleanup
+        }
+    }
+}
+```
+
+### 3. matation deleteRecipe
+```
+mutation {
+    deleteRecipe(id: "delete") {
+        id
     }
 }
 ```
