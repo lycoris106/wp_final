@@ -9,7 +9,7 @@
 - update to the version recorded in current repository (for collaborator)
 ```
 git pull --rebase
-git submodule update --init
+git submodule update
 ```
 - update to the latest version of remote submodule repository (for developer)
 ```
