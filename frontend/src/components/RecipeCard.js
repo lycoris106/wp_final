@@ -5,33 +5,32 @@ import {
   CardMedia,
   CardActionArea,
   Typography,
-  Chip,
-  Grid
+  Chip
 } from "@mui/material";
+
+import { Link } from "react-router-dom";
 
 import { styled } from '@mui/material/styles';
 
-// const StyledChip = styled(MuiChip, {
-//   shouldForwardProp: (prop) =>
-//     true
-// })(({theme, ...props}) => {
-//   console.log(props);
-//   return {
-//     borderColor: props.color,
-//     color: 'red',
-//   };
-// });
+import tagDict from '../json/tags.json';
 
-export default function RecipeCard({imageURL, title, tags}) {
-  const tagDictList = [
-    {contents: ["healthy", "very healthy"], color: "primary"},
-    {contents: ["vegan"], color: "primary"},
-    {contents: ["easy2make", "hard2make"], color: "secondary"}
-  ]
+
+export default function RecipeCard({id, imageURL, title, tags}) {
+  // console.log(tagDict);
+
+  const colorMap = {
+    region: "primary",
+    difficulty: "secondary",
+    time: "info",
+  }
 
   return (
     <Card sx={{ width: 340, height: 380 }}>
-      <CardActionArea >
+      <CardActionArea component={Link}
+        to={{
+          pathname: `/detail/${id}`
+        }}
+      >
         <CardMedia
           component="img"
           height="200"
@@ -44,30 +43,24 @@ export default function RecipeCard({imageURL, title, tags}) {
           <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
             {
               tags.map((tag, ind) => {
-                let i = -1;
-                tagDictList.forEach((dict, index) => {
+                let color = null;
+                Object.keys(tagDict).forEach((tagType, index) => {
                   {/* console.log(dict.contents, tag); */}
-                  if (dict.contents.includes(tag)) {
-                    i = index;
+                  if (tagDict[tagType].includes(tag)) {
+                    color = colorMap[tagType];
                     return;
                   }
                 });
-                if (i !== -1) {
+
+                if (color) {
+                  //  console.log(color);
                   return (
-                    <Chip key={'chip'+ind} label={tag} color={tagDictList[i].color} variant="outlined" sx={{ m: 0.6 }} />
+                    <Chip key={'chip'+ind} label={tag} color={color} variant="outlined" sx={{ m: 0.6 }} />
                   );
                 }
-                return (
-                  <Chip key={'chip'+ind} label={tag} variant="outlined" sx={{ m: 0.6 }} />
-                );
               })
             }
           </Box>
-
-
-          {/* <Typography variant="body2" color="text.secondary" align="center">
-            {"description"}
-          </Typography> */}
 
         </CardContent>
       </CardActionArea>

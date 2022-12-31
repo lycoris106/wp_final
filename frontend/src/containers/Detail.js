@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import Layout from "../components/Layout/Layout.js";
 import InstructList from "../components/InstructList.js";
 import { styled } from '@mui/material/styles';
@@ -34,10 +35,19 @@ const StyledPaper = styled(Paper, {
 
 const Detail = () => {
 
-  const title = "Chocolate"
-  const ingredList = ["100 grams of choocolate", "some sugar", "100 ml of milk"]
+  let { id } = useParams();
+  const title = id;
+  const ingredList = ["100 grams of choocolate", "some sugar", "100 ml of milk"];
   const imgURL = require("../devFiles/img/4405dc8988.jpg");
   const instructions = ["Melt the chocolate", "Add milk and sugar", "..."];
+
+  const { data, loading, subscribeToMore } = useQuery(SEARCH_QUERY, {
+    variables: {
+      ingredients: ingredList
+    }
+  });
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <Layout>

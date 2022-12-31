@@ -35,7 +35,7 @@ function App() {
         { /* Page for showing search results */ }
         <Route path="/result" element={<Result />} />
         { /* Page for testing Detail.js */}
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
         { /* Page for testing Submit.js */ }
         <Route path="/submit" element={<Submit />} />
 

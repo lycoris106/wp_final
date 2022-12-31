@@ -108,9 +108,9 @@ const Search = () => {
                             item
                           >
                             <Chip key={'chip'+ingred.id} label={ingred.name}
-                              variant={selected.has(ingred.id)? "outlined" : "outlined"}
-                              color={color} sx={{ m: 0.6, backgroundColor: selected.has(ingred.id)? "#b9b9b9" : "default" }}
-                              onClick={() => handleSelectionChanged(ingred.id)}
+                              variant={selected.has(ingred.name)? "outlined" : "outlined"}
+                              color={color} sx={{ m: 0.6, backgroundColor: selected.has(ingred.name)? "#b9b9b9" : "default" }}
+                              onClick={() => handleSelectionChanged(ingred.name)}
                             />
                           </Grid>
                         );
@@ -134,12 +134,12 @@ const Search = () => {
                 <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
                   {
                     ingredData.map((ingred) => {
-                      if (selected.has(ingred.id)) {
+                      if (selected.has(ingred.name)) {
                         return (
                           <Chip key={'chip_'+ingred.id} label={ingred.name}
                             variant="outlined"
                             sx={{ m: 0.6 }}
-                            onDelete={() => handleIngredDelete(ingred.id)}
+                            onDelete={() => handleIngredDelete(ingred.name)}
                           />
                         )
                       }
@@ -150,7 +150,7 @@ const Search = () => {
               <Divider />
               <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Link
-                  to="/result" state={{ ingredList: ["water"] }}
+                  to="/result" state={{ ingredList: Array.from(selected) }}
                   style={{ textDecoration: 'none' }}
                 >
                   <Button

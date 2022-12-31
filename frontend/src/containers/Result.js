@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import { useQuery } from '@apollo/client';
 import { SEARCH_QUERY } from '../graphql/query'
 
+
 const Result = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,6 +39,7 @@ const Result = (props) => {
             data && data.recipes && data.recipes.map(recipe => (
               <Grid item key={'recipe'+recipe.id}>
                 <RecipeCard
+                  id={recipe.id}
                   imageURL={recipe.image_url}
                   title={recipe.title}
                   tags={recipe.tags}
@@ -46,30 +48,6 @@ const Result = (props) => {
             )
             )
           }
-          {/* <Grid item>
-            <RecipeCard
-              imageURL={require("../devFiles/img/4405dc8988.jpg")}
-              title={"Chocolate"}
-              steps={["Melt the chocolate", "..."]}
-              tags={["healthy", "vegan", "easy2make"]}
-            />
-          </Grid>
-          <Grid item>
-            <RecipeCard
-              imageURL={require("../devFiles/img/440578f0ff.jpg")}
-              title={"Bread"}
-              steps={["Mix flour & egg", "Add milk and sugar", "Keep mixing"]}
-              tags={["easy2make"]}
-            />
-          </Grid>
-          <Grid item>
-            <RecipeCard
-              imageURL={require("../devFiles/img/2433907268.jpg")}
-              title={"Strawberry Smoothie"}
-              steps={["Put strawberries in the blender", "Turn on the blender", "Pour it out into a cup"]}
-              tags={["vegan", "hard2make"]}
-            />
-          </Grid> */}
         </Grid>
       </Box>
     </Layout>
