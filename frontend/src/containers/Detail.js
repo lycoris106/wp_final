@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import Layout from "../components/Layout/Layout.js";
 import InstructList from "../components/InstructList.js";
+import IngredItem from "../components/Detail/IngredItem"
 import { styled } from '@mui/material/styles';
 import {
   Box,
@@ -25,6 +26,15 @@ import { GET_RECIPE_QUERY } from '../graphql/query'
 
 import CheckIcon from '@mui/icons-material/Check';
 
+
+import tagDict from '../json/tags.json';
+
+const colorMap = {
+  region: "primary",
+  difficulty: "secondary",
+  time: "info",
+}
+
 const StyledPaper = styled(Paper, {
   shouldForwardProp: (props) => props !== 'bgColor',
 })(({theme, ...props}) => {
@@ -37,6 +47,9 @@ const StyledPaper = styled(Paper, {
 });
 
 const Detail = () => {
+
+  const location = useLocation();
+  const searchList = location.state.searchList;
 
   let { id } = useParams();
 
@@ -51,13 +64,13 @@ const Detail = () => {
   // const instructions = data.recipe.instructions;
   // const ingredList = data.recipe.ingredients;
 
-  if (loading) return <p>Loading...</p>;
+  if (loading || (!data.recipe)) return <p>Loading...</p>;
 
   return (
     <Layout>
       <Grid container spacing={1}>
         <Grid item xs={8}>
-          <Card sx={{ width: 700, height:650 }}>
+          <Card sx={{ width: 700, height:650, mb: 5}}>
             <Typography gutterBottom variant="h3" component="div" align="center" sx={{ fontWeight: 'bold' }}>
               {data.recipe.title}
             </Typography>
@@ -66,31 +79,49 @@ const Detail = () => {
               image= {data.recipe.image_url}
             />
           </Card>
+          <StyledPaper elevation={2} bgColor={'#fcf9f4'} sx={{ width: 700 }}>
+            {
+              data.recipe.tags.map((tag, ind) => {
+                let color = null;
+                Object.keys(tagDict).forEach((tagType, index) => {
+                  {/* console.log(dict.contents, tag); */}
+                  if (tagDict[tagType].includes(tag)) {
+                    color = colorMap[tagType];
+                    return;
+                  }
+                });
+
+                if (color) {
+                  //  console.log(color);
+                  return (
+                    <Chip key={'chip'+ind} label={tag} color={color} variant="outlined" sx={{ m: 0.6 }} />
+                  );
+                }
+                return (
+                  <Chip key={'chip'+ind} label={tag} variant="outlined" sx={{ m: 0.6 }} />
+                );
+              })
+            }
+            {/* <Chip label={'Customized'}
+              color={"primary"} sx={{ m: 0.6 }}
+            /> */}
+          </StyledPaper>
         </Grid>
         <Grid item xs={4}>
-          <StyledPaper elevation={2} bgColor={'default'}>
-            <Chip label={'Customized'}
-              color={"primary"} sx={{ m: 0.6 }}
-            />
-            {/* <Typography align="center" variant="h5" color="primary" gutterBottom>
-              Customized
-            </Typography> */}
-          </StyledPaper>
-          <StyledPaper elevation={2} bgColor={'#f5f5f5'}>
+          <StyledPaper elevation={2} bgColor={'#fcf9f4'}>
             <Typography align="center" variant="h5" gutterBottom>
               Ingredient List
             </Typography>
             <Divider />
             <List>
-              <ListItem>
-                <ListItemIcon>
-                  <CheckIcon sx={{ color: "orange" }}/>
-                </ListItemIcon>
-                <ListItemText primary={data.recipe.ingredients[0]} />
-              </ListItem>
-              <ListItem>
-                <ListItemText inset primary={data.recipe.ingredients[1]} />
-              </ListItem>
+              {
+                data.recipe.ingredients.filter((ing) =>
+                  ing!=="\u00a0"
+                ).map((ing) => (
+                  <IngredItem key={ing} ingred={ing}/>
+                ))
+              }
+
             </List>
           </StyledPaper>
         </Grid>

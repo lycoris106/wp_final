@@ -43,6 +43,7 @@ const Result = (props) => {
                   imageURL={recipe.image_url}
                   title={recipe.title}
                   tags={recipe.tags}
+                  searchList={ingredList}
                 />
               </Grid>
             )

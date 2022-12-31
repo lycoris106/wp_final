@@ -14,23 +14,28 @@ import { styled } from '@mui/material/styles';
 
 import tagDict from '../json/tags.json';
 
+const colorMap = {
+  region: "primary",
+  difficulty: "secondary",
+  time: "info",
+}
 
-export default function RecipeCard({id, imageURL, title, tags}) {
+
+export default function RecipeCard({id, imageURL, title, tags, searchList}) {
   // console.log(tagDict);
-
-  const colorMap = {
-    region: "primary",
-    difficulty: "secondary",
-    time: "info",
-  }
 
   return (
     <Card sx={{ width: 340, height: 380 }}>
       <CardActionArea component={Link}
-        to={{
-          pathname: `/detail/${id}`
-        }}
+        to={`/detail/${id}`}
+        state={{ searchList: searchList }}
       >
+      {/* <CardActionArea> */}
+      {/* <Link
+        to={`/detail/${id}`}
+        state={{ searchList: searchList }}
+        style={{ textDecoration: 'none' }}
+      > */}
         <CardMedia
           component="img"
           height="200"
@@ -63,6 +68,7 @@ export default function RecipeCard({id, imageURL, title, tags}) {
           </Box>
 
         </CardContent>
+        {/* </Link> */}
       </CardActionArea>
     </Card>
   );

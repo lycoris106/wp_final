@@ -13,7 +13,7 @@ import {
 
 export default function Instruction( { instructions } ) {
   return (
-    <Card>
+    <Card sx={{ backgroundColor: "#fcf9f4"}}>
       <Box sx={{ minWidth: 1050 }}>
         <Toolbar>
           <Typography
@@ -33,13 +33,21 @@ export default function Instruction( { instructions } ) {
                 <TableCell width="10%">
                   <Typography
                     variant="h5"
+                    color="primary"
+                  >
+                    {'Step '+(idx+1)}
+                  </Typography>
+                </TableCell>
+                <TableCell width="15%">
+                  <Typography
+                    variant="h6"
                     color="secondary"
                   >
-                    {'Step '+idx}
+                    {instruct.title}
                   </Typography>
                 </TableCell>
                 <TableCell align="left">
-                  <Typography width="90%" >
+                  <Typography variant="body1" width="75%" >
                     {instruct.contents.join(' ')}
                   </Typography>
                 </TableCell>
