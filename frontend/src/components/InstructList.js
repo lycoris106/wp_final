@@ -26,7 +26,7 @@ export default function Instruction( { instructions } ) {
             Instructions
           </Typography>
         </Toolbar>
-        <Table title="Average Expense Ratio">
+        <Table title="Instructions">
           <TableBody>
             {instructions.map((instruct, idx) => (
               <TableRow hover key={'instruct'+idx}>
@@ -40,7 +40,7 @@ export default function Instruction( { instructions } ) {
                 </TableCell>
                 <TableCell align="left">
                   <Typography width="90%" >
-                    {instruct}
+                    {instruct.contents.join(' ')}
                   </Typography>
                 </TableCell>
               </TableRow>

@@ -20,6 +20,9 @@ import {
   Chip
 } from "@mui/material";
 
+import { useQuery } from '@apollo/client';
+import { GET_RECIPE_QUERY } from '../graphql/query'
+
 import CheckIcon from '@mui/icons-material/Check';
 
 const StyledPaper = styled(Paper, {
@@ -36,16 +39,17 @@ const StyledPaper = styled(Paper, {
 const Detail = () => {
 
   let { id } = useParams();
-  const title = id;
-  const ingredList = ["100 grams of choocolate", "some sugar", "100 ml of milk"];
-  const imgURL = require("../devFiles/img/4405dc8988.jpg");
-  const instructions = ["Melt the chocolate", "Add milk and sugar", "..."];
 
-  const { data, loading, subscribeToMore } = useQuery(SEARCH_QUERY, {
+  const { data, loading, subscribeToMore } = useQuery(GET_RECIPE_QUERY, {
     variables: {
-      ingredients: ingredList
+      id: id
     }
   });
+
+  // const title = data.recipe.title;
+  // const imgURL = data.recipe.image_url;
+  // const instructions = data.recipe.instructions;
+  // const ingredList = data.recipe.ingredients;
 
   if (loading) return <p>Loading...</p>;
 
@@ -55,11 +59,11 @@ const Detail = () => {
         <Grid item xs={8}>
           <Card sx={{ width: 700, height:650 }}>
             <Typography gutterBottom variant="h3" component="div" align="center" sx={{ fontWeight: 'bold' }}>
-              {title}
+              {data.recipe.title}
             </Typography>
             <CardMedia
               component="img"
-              image= {imgURL}
+              image= {data.recipe.image_url}
             />
           </Card>
         </Grid>
@@ -82,10 +86,10 @@ const Detail = () => {
                 <ListItemIcon>
                   <CheckIcon sx={{ color: "orange" }}/>
                 </ListItemIcon>
-                <ListItemText primary={ingredList[0]} />
+                <ListItemText primary={data.recipe.ingredients[0]} />
               </ListItem>
               <ListItem>
-                <ListItemText inset primary={ingredList[1]} />
+                <ListItemText inset primary={data.recipe.ingredients[1]} />
               </ListItem>
             </List>
           </StyledPaper>
@@ -93,7 +97,7 @@ const Detail = () => {
 
         <Grid item xs={12}>
           <Box sx={{ mt: 3 }}>
-            <InstructList instructions={instructions} />
+            <InstructList instructions={data.recipe.instructions} />
           </Box>
         </Grid>
       </Grid>
