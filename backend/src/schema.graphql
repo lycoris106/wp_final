@@ -1,27 +1,81 @@
-type Instruction {
-    title: String
-    contents: [String!]
-}
+"""Query"""
+    type Query {
+        allrecipes: [Recipe!]!
+        recipes(ingredients: [String]!): [Recipe]!
+        recipe(id: ID!): Recipe
+    }
 
-type Time {
-    preparation: String
-    cook: String
-    cleanup: String
-}
+"""Mutation"""
+    type Mutation {
+        createRecipe(input: CreateRecipeInput!): Recipe
+        updateRecipe(input: UpdateRecipeInput!): Recipe
+        deleteRecipe(id: ID!): ID
+    }
 
-type Recipe {
-    id: ID!
-    title: String
-    content: String
-    image_url: String
-    ingredients: [String]
-    instructions: [Instruction]
-    tags: [String!]
-    time: Time
-}
+"""Type"""
+    type Instruction {
+        title: String
+        contents: [String]
+    }
 
-type Query {
-    allrecipes: [Recipe!]!
-    recipes(ingredients: [String]!): [Recipe]!
-    recipe(id: ID!): Recipe
-}
+    type Time {
+        preparation: String
+        cook: String
+        cleanup: String
+    }
+
+    type Recipe {
+        id: ID!
+        title: String
+        content: String
+        image_url: String
+        ingredients: [String]
+        instructions: [Instruction]
+        tags: [String]
+        time: Time
+    }
+
+"""Input"""
+    input CreateInstructionInput {
+        title: String
+        contents: [String]
+    }
+
+    input CreateTimeInput {
+        preparation: String
+        cook: String
+        cleanup: String
+    }
+
+    input CreateRecipeInput {
+        id: String
+        title: String!
+        content: String
+        image_url: String
+        ingredients: [String]
+        instructions: [CreateInstructionInput]
+        tags: [String]
+        time: CreateTimeInput
+    }
+
+    input UpdateInstructionInput {
+        title: String
+        contents: [String]
+    }
+
+    input UpdateTimeInput {
+        preparation: String
+        cook: String
+        cleanup: String
+    }
+
+    input UpdateRecipeInput {
+        id: ID!
+        title: String
+        content: String
+        image_url: String
+        ingredients: [String]
+        instructions: [UpdateInstructionInput]
+        tags: [String]
+        time: UpdateTimeInput
+    }

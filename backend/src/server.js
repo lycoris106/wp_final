@@ -6,7 +6,7 @@ import { useServer } from 'graphql-ws/lib/use/ws'
 
 // resolvers
 import Query from "./resolvers/Query.js";
-// import Mutation from "./resolvers/Mutation.js";
+import Mutation from "./resolvers/Mutation.js";
 // import Subscription from "./resolvers/Subscription.js";
 // import DateResolver from "./resolvers/Date.js";
 // import CategoryResolver from "./resolvers/Category.js";
@@ -21,7 +21,7 @@ const yoga = createYoga({
         typeDefs: fs.readFileSync('./src/schema.graphql', 'utf-8'),
         resolvers: {
             Query,
-            // Mutation,
+            Mutation,
             // Subscription,
             // Date: DateResolver,
             // Category: CategoryResolver,
