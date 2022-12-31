@@ -1,4 +1,4 @@
-export const recipes = 
+const recipes = 
 [{
     "id": "11d40156893b11eda36d8b51443f2256",
     "title": "Thai Twist Onsen Eggs",
@@ -88540,4 +88540,6 @@ export const recipes =
         "cook": "10 min",
         "cleanup": "10 min"
     }
-}]
+}];
+
+export { recipes };

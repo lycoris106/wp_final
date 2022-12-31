@@ -2,7 +2,7 @@
     type Query {
         allrecipes: [Recipe!]!
         recipes(ingredients: [String]!): [Recipe]!
-        recipe(id: ID!): Recipe
+        recipe(id: ID!, ingredients: [String]!): Recipe
     }
 
 """Mutation"""
@@ -31,6 +31,7 @@
         image_url: String
         ingredients: [String]
         instructions: [Instruction]
+        matches: [Boolean]
         tags: [String]
         time: Time
     }

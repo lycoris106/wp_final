@@ -1,5 +1,5 @@
 import recipeModel from "./models/recipe.js"
-import recipes from "./recipes.js"
+import { recipes } from "./recipes.js"
 
 const example = [
     {

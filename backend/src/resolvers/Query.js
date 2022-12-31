@@ -11,7 +11,7 @@ const Query = {
         return recipes.filter((recipe) => {
             for (const description of recipe.ingredients) {
                 for (var ingredient of ingredients) {
-                    if (description.includes(ingredient))
+                    if (description.toLowerCase().includes(ingredient.toLowerCase()))
                         return true;
                 }
             }
@@ -22,8 +22,17 @@ const Query = {
         });
     },
 
-    recipe: async (parent, {id}, {recipeModel}) => {
-        return await recipeModel.findOne({id: id});
+    recipe: async (parent, {id, ingredients}, {recipeModel}) => {
+        let recipe = await recipeModel.findOne({id: id});
+        if (!recipe)
+            return null;
+        recipe.matches = recipe.ingredients.map((description) => {
+            for (var ingredient of ingredients)
+                if (description.toLowerCase().includes(ingredient.toLowerCase()))
+                    return true;
+            return false;
+        })
+        return recipe;
     }
 };
 
