@@ -1,45 +1,45 @@
 {
-  "grain":
-  [
-      "Flour", "Rice", "Noodles", "Pasta", "Wheat", "Bread", "Vermicelli", "Bran", "Dough", "Corn", "Potato"
-  ],
-"meat":
-  [
-      "Chicken", "Fish", "Seafood", "Beef", "Pork", "Prawn", "Duck", "Lamb", "Shrimp", "Oyster",
-      "Salmon", "Mackerel", "Anchovies", "Sausage"
-  ],
-"seasoning":
-  [
-      "Garlic", "Galangal", "Pandan", "Pepper", "Chili", "Ginger", "Cloves", "Shallots", "Coriander",
-      "Turmeric", "Galangal", "Cayenne", "Cumin", "Curry", "Cinnamon", "Vanilla", "Masala", "Mint",
-      "Peppercorns", "Cardamom", "Anise", "Nutmeg", "Caster", "Scallion", "Fennel", "Paprika", "Fenugreek", "Onion"
-  ],
-"sauce":
-  [
-      "Vinegar", "Honey", "Sambal", "Syrup", "Mustard", "Mayonnaise", "Belacan", "Ketchup", "Gochujang"
-  ],
-"husbandry":
-  [
-      "Milk", "Egg", "Butter", "Cream", "Yolks"
-  ],
-"vegetable":
-  [
-      "Nuts", "Mushroom", "Sweet Potato", "Zucchini", 
-      "Avocado", "Coconut", "Soy", "Onion", "Sesame", "Tomato", "Pandan",
-      "Lemongrass", "Corn", "Bean", "Carrot", "Candlenut", "Cabbage", "Olive", "Kaffir",
-      "Tamarind", "Basil", "Potato", "Peanuts", "Cucumber", "Leek", "Shiitake",
-      "Celery", "Spinach", "Calamansi", "Radish", "Bamboo", "Peas", "Cauliflower",
-      "Lettuce", "Seaweed", "Almonds", "Kimchi", "Pods", "Pumpkin",
-      "Cashew", "Cilantro", "Broccoli", "Chives", "Eggplant", "Florets", "Cassava"
-  ],
-"fruit": 
-  [
-    "Apple", "Jackfruit", "Tomato", "Lemon", "Pineapple", "Cherry", "Orange", "Mango", "Banana", "Lime"
-  ],
-"manufactured":
-  [
-      "Cheese", "Chocolate", "Gula Melaka", "Salted Egg", "Tempeh", "Cornstarch", "Tofu", "Tapioca",
-      "Wine", "Soda", "Yogurt", "Ghee", "Cheddar", "Shaoxing Wine", "Agar Powder", "Yeast", "Mozzarella",
-      "Curd", "Margarine", "Coconut milk", "Tempeh", "Icing", "Jelly", "Kimchi"
-  ]
+    "grain":
+        [
+            "Flour", "Rice", "Noodles", "Pasta", "Wheat", "Bread", "Vermicelli", "Bran", "Dough", "Corn", "Potato"
+        ],
+    "meat":
+        [
+            "Chicken", "Fish", "Seafood", "Beef", "Pork", "Prawn", "Duck", "Lamb", "Shrimp", "Oyster",
+            "Salmon", "Mackerel", "Anchovies", "Sausage"
+        ],
+    "seasoning":
+        [
+            "Garlic", "Galangal", "Pandan", "Pepper", "Chili", "Ginger", "Cloves", "Shallots", "Coriander",
+            "Turmeric", "Galangal", "Cayenne", "Cumin", "Curry", "Cinnamon", "Vanilla", "Masala", "Mint",
+            "Peppercorns", "Cardamom", "Anise", "Nutmeg", "Caster", "Scallion", "Fennel", "Paprika", "Fenugreek", "Onion"
+        ],
+    "sauce":
+        [
+            "Vinegar", "Honey", "Sambal", "Syrup", "Mustard", "Mayonnaise", "Belacan", "Ketchup", "Gochujang"
+        ],
+    "husbandry":
+        [
+            "Milk", "Egg", "Butter", "Cream", "Yolks"
+        ],
+    "vegetable":
+        [
+            "Nuts", "Mushroom", "Sweet Potato", "Zucchini", 
+            "Avocado", "Coconut", "Soy", "Onion", "Sesame", "Tomato", "Pandan",
+            "Lemongrass", "Corn", "Bean", "Carrot", "Candlenut", "Cabbage", "Olive", "Kaffir",
+            "Tamarind", "Basil", "Potato", "Peanuts", "Cucumber", "Leek", "Shiitake",
+            "Celery", "Spinach", "Calamansi", "Radish", "Bamboo", "Peas", "Cauliflower",
+            "Lettuce", "Seaweed", "Almonds", "Kimchi", "Pods", "Pumpkin",
+            "Cashew", "Cilantro", "Broccoli", "Chives", "Eggplant", "Florets", "Cassava"
+        ],
+    "fruit": 
+        [
+            "Apple", "Jackfruit", "Tomato", "Lemon", "Pineapple", "Cherry", "Orange", "Mango", "Banana", "Lime"
+        ],
+    "manufactured":
+        [
+            "Cheese", "Chocolate", "Gula Melaka", "Salted Egg", "Tempeh", "Cornstarch", "Tofu", "Tapioca",
+            "Wine", "Soda", "Yogurt", "Ghee", "Cheddar", "Shaoxing Wine", "Agar Powder", "Yeast", "Mozzarella",
+            "Curd", "Margarine", "Coconut milk", "Tempeh", "Icing", "Jelly", "Kimchi"
+        ]
 }

@@ -1,8 +1,9 @@
 import recipeModel from "./models/recipe.js"
+import { recipes } from "./recipes.js"
 
 const example = [
     {
-        "id": "7673aeba887111eda55847b92c10f584",
+        "id": "11d40156893b11eda36d8b51443f2256",
         "title": "Thai Twist Onsen Eggs",
         "content": "We all know the flavourful shoyu-based onsen tamago, but here\u2019s one perfumed with heady Thai flavours of sprity lemongrass and gingery galangal, crisp fried shallots, Thai chillies and coriander. Salty fish sauce, lightly sweetened with earthy palm sugar forms the broth of this refreshing infusion and pulls the whole thing together. Our way of eating it? Slice the soft-boiled egg in half and first plop in the jammy yolk, tongue down for a creamy mouthfeel, then sip on the broth and repeat for the other half \u2013 this way you get to taste this twice! ",
         "image_url": "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/thai-twist-onsen-egg/Thai_Twist_Onsen_Tamago_Sauce_article_1920x1280_7.jpg.transform/recipestep-img/img.jpg",
@@ -46,7 +47,6 @@ const example = [
         ],
         "tags": [
             "Thai",
-            "Egg",
             "Easy"
         ],
         "time": {
@@ -56,7 +56,7 @@ const example = [
         }
     },
     {
-        "id": "7673aebb887111eda55847b92c10f584",
+        "id": "11d40157893b11eda36d8b51443f2256",
         "title": "Khao Pad Poo (Thai-style Crab Fried Rice)",
         "content": "The next time you have leftover rice, give this Thai-style crab-studded fried rice, the Bib Gourmand awarded dish on Michelin Guide a go! It\u2019s a go-to order at any street food stall in Thailand, and surprisingly easy to make. In a hot oiled pan, throw in the rice and break up the grains with fast, rapid stirs of the spatula. Then, toss in sweet crabmeat, chopped spring onions, sizzling garlic, a splash of savoury fish sauce and sharp lime juice (some use vinegar, too). If you're feeling extra hungry, we'd recommend bubbling up an egg in the same pan. ",
         "image_url": "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/crab-fried-rice/Crab_Fried_Rice_main_article_1920x1280_6.jpg.transform/recipestep-img/img.jpg",
@@ -105,10 +105,7 @@ const example = [
             }
         ],
         "tags": [
-            "Rice",
-            "Egg",
             "Thai",
-            "Seafood",
             "Easy"
         ],
         "time": {
@@ -118,7 +115,7 @@ const example = [
         }
     },
     {
-        "id": "7673aebc887111eda55847b92c10f584",
+        "id": "11d40158893b11eda36d8b51443f2256",
         "title": "Pad Thai Goong (Shrimp Pad Thai)",
         "content": "This shrimp pad thai recipe has a lot of ingredients \u2013 but it\u2019s really an easy stir-fry where everything comes together quickly. Some ingredients can be substituted, like palm sugar for honey, but others, like tamarind paste, rice noodles, and of course, fish sauce, are essential to getting Thailand\u2019s most popular dish right. Rice noodles, because its neutral taste soaks up all the intense flavours readily. Tamarind paste too, used widely in Thai cooking, adds a sour-sweet buzz to this dish. Besides prawns, you\u2019ll often see pad thai with chicken, beef, a mix of seafood, or all-vegetarian.",
         "image_url": "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/pad-thai-goong-shrimp-pad-thai/Shrimp%20Pad%20Thai_article_1920x1280_4.jpg.transform/recipestep-img/img.jpg",
@@ -176,8 +173,6 @@ const example = [
             "Under 30 mins",
             "Thai",
             "Sweet and sour",
-            "Prawn",
-            "Noodles",
             "Savory",
             "Easy"
         ],
@@ -188,7 +183,7 @@ const example = [
         }
     },
     {
-        "id": "7673aebd887111eda55847b92c10f584",
+        "id": "11d40159893b11eda36d8b51443f2256",
         "title": "Thai Fried Chicken Wings",
         "content": "Fried. Chicken. Wings. If that alone isn\u2019t enough to make you make it, this one\u2019s deep-fried with an addictive toss of intense Thai flavours. Think a kick of kaffir lime leaves, punchy peppercorns and bashed garlicky bits. The hardest ingredient to find might be coriander roots, or cilantro roots, depending on where you are. But it\u2019s worth the while \u2013 this warming herb gives a fresh grassy-minty aroma that\u2019s often a scent of many Thai dishes. If wings are too messy, drumettes work too. ",
         "image_url": "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/thai-fried-chicken-wings/Fried%20Chicken%20Wings_article_1920x1280_6.jpg.transform/recipestep-img/img.jpg",
@@ -233,7 +228,6 @@ const example = [
         ],
         "tags": [
             "Snacks",
-            "Chicken",
             "Thai",
             "Savory",
             "Easy"
@@ -245,7 +239,7 @@ const example = [
         }
     },
     {
-        "id": "7673aebe887111eda55847b92c10f584",
+        "id": "11d4015a893b11eda36d8b51443f2256",
         "title": "Steamed Red Snapper with Lime",
         "content": "This Thai steamed fish dish is stunningly simple, but swimming in flavour. You get a zap of sour and sweet from lime slices, heat from the chillies, a great garlicky kick, and hints of lemongrass to round it all up. Best if your fish is fresh too \u2013 it adds a subtle sweetness to the whole dish. In Thai restaurants, a whole fish is often used. Here though, we\u2019ve used a fillet-sized portion that makes preparation fast, easy and satisfyingly manageable. ",
         "image_url": "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/steamed-red-snapper-with-lime/Steamed%20Red%20Snapper%20with%20Lime_article_1920x1280_6.jpg.transform/recipestep-img/img.jpg",
@@ -284,8 +278,6 @@ const example = [
             "Under 30 mins",
             "Thai",
             "Sweet and sour",
-            "Fish",
-            "Seafood",
             "Easy"
         ],
         "time": {
@@ -296,109 +288,76 @@ const example = [
     },
     {
         "id": "update",
-        "title": "Recipe for updating",
-        "content": "This Thai steamed fish dish is stunningly simple, but swimming in flavour. You get a zap of sour and sweet from lime slices, heat from the chillies, a great garlicky kick, and hints of lemongrass to round it all up. Best if your fish is fresh too \u2013 it adds a subtle sweetness to the whole dish. In Thai restaurants, a whole fish is often used. Here though, we\u2019ve used a fillet-sized portion that makes preparation fast, easy and satisfyingly manageable. ",
-        "image_url": "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/steamed-red-snapper-with-lime/Steamed%20Red%20Snapper%20with%20Lime_article_1920x1280_6.jpg.transform/recipestep-img/img.jpg",
+        "title": "update",
+        "content": "update",
+        "image_url": "update",
         "ingredients": [
-            "2 red snapper fillets, 160 g each",
-            "4 large cloves of garlic",
-            "4 red bird's eye chili",
-            "\u00bd a green lime",
-            "1 lemongrass",
-            "3 tbsp fresh lime juice",
-            "2 tbsp light fish sauce",
-            "\u00be tsp white sugar",
-            "10 g fresh coriander leaves, picked"
+            "update",
         ],
         "instructions": [
             {
-                "title": "Prepare the aromatics and sauce",
+                "title": "update",
                 "contents": [
-                    "First, roughly chop the garlic and bird\u2019s eye chilli.",
-                    "Thinly slice the lime.",
-                    "Trim the lemongrass of its outer leaves and top half, leaving the bottom 4 inches, lightly smash the bulb with the back of a knife.",
-                    "Mix the garlic, chilli, lemongrass, lime slices, lime juice, fish sauce and sugar in a small bowl."
+                    "update",
                 ]
             },
             {
-                "title": "Steam away",
+                "title": "update",
                 "contents": [
-                    "Prepare a steamer.",
-                    "Place the fish fillets on the steamer dish, and pour the sauce over.",
-                    "Steam for 6-8 mins until opaque and just firm, and remove from the steamer.",
-                    "Do not overcook the fish, it will be firm and flake easily when done."
+                    "update",
                 ]
             }
         ],
         "tags": [
-            "Under 30 mins",
-            "Thai",
-            "Sweet and sour",
-            "Fish",
-            "Seafood",
-            "Easy"
+            "update",
         ],
         "time": {
-            "preparation": "5 min",
-            "cook": "10 min",
-            "cleanup": "10 min"
+            "preparation": "update",
+            "cook": "update",
+            "cleanup": "update",
         }
     },
     {
         "id": "delete",
-        "title": "Recipe for updating",
-        "content": "This Thai steamed fish dish is stunningly simple, but swimming in flavour. You get a zap of sour and sweet from lime slices, heat from the chillies, a great garlicky kick, and hints of lemongrass to round it all up. Best if your fish is fresh too \u2013 it adds a subtle sweetness to the whole dish. In Thai restaurants, a whole fish is often used. Here though, we\u2019ve used a fillet-sized portion that makes preparation fast, easy and satisfyingly manageable. ",
-        "image_url": "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/steamed-red-snapper-with-lime/Steamed%20Red%20Snapper%20with%20Lime_article_1920x1280_6.jpg.transform/recipestep-img/img.jpg",
+        "title": "delete",
+        "content": "delete",
+        "image_url": "delete",
         "ingredients": [
-            "2 red snapper fillets, 160 g each",
-            "4 large cloves of garlic",
-            "4 red bird's eye chili",
-            "\u00bd a green lime",
-            "1 lemongrass",
-            "3 tbsp fresh lime juice",
-            "2 tbsp light fish sauce",
-            "\u00be tsp white sugar",
-            "10 g fresh coriander leaves, picked"
+            "delete",
         ],
         "instructions": [
             {
-                "title": "Prepare the aromatics and sauce",
+                "title": "delete",
                 "contents": [
-                    "First, roughly chop the garlic and bird\u2019s eye chilli.",
-                    "Thinly slice the lime.",
-                    "Trim the lemongrass of its outer leaves and top half, leaving the bottom 4 inches, lightly smash the bulb with the back of a knife.",
-                    "Mix the garlic, chilli, lemongrass, lime slices, lime juice, fish sauce and sugar in a small bowl."
+                    "delete",
                 ]
             },
             {
-                "title": "Steam away",
+                "title": "delete",
                 "contents": [
-                    "Prepare a steamer.",
-                    "Place the fish fillets on the steamer dish, and pour the sauce over.",
-                    "Steam for 6-8 mins until opaque and just firm, and remove from the steamer.",
-                    "Do not overcook the fish, it will be firm and flake easily when done."
+                    "delete",
                 ]
             }
         ],
         "tags": [
-            "Under 30 mins",
-            "Thai",
-            "Sweet and sour",
-            "Fish",
-            "Seafood",
-            "Easy"
+            "delete",
         ],
         "time": {
-            "preparation": "5 min",
-            "cook": "10 min",
-            "cleanup": "10 min"
+            "preparation": "delete",
+            "cook": "delete",
+            "cleanup": "delete",
         }
     }
 ];
 
 const dataInit = async () => {
+    // develop
     await recipeModel.deleteMany({});
     await recipeModel.insertMany(example);
+
+    // online
+    // if (!recipeModel.findOne({}))
+    //     await recipeModel.insertMany(recipes);
     console.log("Database initialized!");
 };
 

@@ -13,13 +13,14 @@ export const SEARCH_QUERY = gql`
 `;
 
 export const GET_RECIPE_QUERY = gql`
-    query recipe($id: ID!) {
-        recipe(id: $id) {
+    query recipe($id: ID!, $ingredients: [String]!) {
+        recipe(id: $id, ingredients: $ingredients) {
             id
             title
             content
             image_url
             ingredients
+            matches
             instructions {
                 title
                 contents

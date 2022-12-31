@@ -9,7 +9,7 @@
 - update to the version recorded in current repository (for collaborator)
 ```
 git pull --rebase
-git submodule update --init
+git submodule update
 ```
 - update to the latest version of remote submodule repository (for developer)
 ```
@@ -137,7 +137,10 @@ query {
 #### `id` dose not exist
 ```
 query {
-    recipe (id: "dooes not exist") {
+    recipe (
+        id: "does not exist"
+        ingredients: ["CHILI", "shallots", "Sugar"]
+    ) {
         id
         title
         image_url
@@ -158,11 +161,15 @@ query {
 #### `id` exists
 ```
 query {
-    recipe (id: "7673aebe887111eda55847b92c10f584") {
+    recipe (
+        id: "11d40156893b11eda36d8b51443f2256"
+        ingredients: ["CHILI", "shallots", "Sugar"]
+    ) {
         id
         title
         image_url
         ingredients
+    		matches
         instructions {
             title
             contents
@@ -178,7 +185,7 @@ query {
 ```
 
 ## Mutation
-### 1. matation createRecipe
+### 1. mutation createRecipe
 ```
 mutation {
     createRecipe (input: {
@@ -204,7 +211,7 @@ mutation {
 }
 ```
 
-### 2. matation updateRecipe
+### 2. mutation updateRecipe
 ```
 mutation {
     updateRecipe (input: {
@@ -229,7 +236,7 @@ mutation {
 }
 ```
 
-### 3. matation deleteRecipe
+### 3. mutation deleteRecipe
 ```
 mutation {
     deleteRecipe(id: "delete") {
