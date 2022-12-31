@@ -1,10 +1,14 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import { Box } from "@mui/material";
-import { CardActionArea } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+  Typography,
+  Chip,
+  Grid
+} from "@mui/material";
+
 import { styled } from '@mui/material/styles';
 
 // const StyledChip = styled(MuiChip, {
@@ -26,20 +30,23 @@ export default function RecipeCard({imageURL, title, tags}) {
   ]
 
   return (
-    <Card sx={{ width: 340, height:350 }}>
+    <Card sx={{ width: 340, height: 450 }}>
       <CardActionArea >
-        {/* <CardMedia
+        <CardMedia
           component="img"
           height="200"
           image= {imageURL}
-        /> */}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" align="center" sx={{ fontWeight: 'bold' }}>
             {title}
           </Typography>
-          <Box sx={{
-            display: "flex",
-          }}>
+          <Box>
+          <Grid
+            container
+            spacing={1}
+            sx={{ m: 1 }}
+          >
             {
               tags.map((tag, ind) => {
                 let i = -1;
@@ -52,7 +59,11 @@ export default function RecipeCard({imageURL, title, tags}) {
                 });
                 if (i !== -1) {
                   return (
-                    <Chip key={'chip'+ind} label={tag} color={tagDictList[i].color} variant="outlined" sx={{ m: 0.6 }} />
+                    <Grid key={'grid_'+ind}
+                      item
+                    >
+                      <Chip key={'chip'+ind} label={tag} color={tagDictList[i].color} variant="outlined" sx={{ m: 0.6 }} />
+                    </Grid>
                   );
                 }
                 return (
@@ -60,6 +71,7 @@ export default function RecipeCard({imageURL, title, tags}) {
                 );
               })
             }
+          </Grid>
           </Box>
 
           {/* <Typography variant="body2" color="text.secondary" align="center">

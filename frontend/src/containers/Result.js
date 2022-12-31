@@ -16,15 +16,19 @@ const Result = (props) => {
   const { data, loading, subscribeToMore } = useQuery(SEARCH_QUERY, {
     variables: {
       ingredients: ingredList
-    },
+    }
   });
 
+
   useEffect(() => {
-    console.log('data', data);
+    // console.log('data', data);
     if (data) {
       console.log('data.recipes', data.recipes);
     }
   }, [data]);
+
+  if (loading) return <p>Loading...</p>;
+
 
   return (
     <Layout>
@@ -34,9 +38,9 @@ const Result = (props) => {
             data && data.recipes && data.recipes.map(recipe => (
               <Grid item key={'recipe'+recipe.id}>
                 <RecipeCard
-                  // imageURL={require("../devFiles/img/4405dc8988.jpg")}
+                  imageURL={recipe.image_url}
                   title={recipe.title}
-                  tags={["healthy", "vegan", "easy2make"]}
+                  tags={recipe.tags}
                 />
               </Grid>
             )
