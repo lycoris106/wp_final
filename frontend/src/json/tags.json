@@ -6,11 +6,11 @@
     ],
   "difficulty":
     [
-      "Easy", "Medium", "Hard"
+      "Esay", "Medium", "Hard"
     ],
   "time":
     [
-      "Above 60 mins", "Under 30 mins", "Under 45 mins", "Under 60 mins", "Under 15 mins"
+          "Above 60 mins", "Under 30 mins", "Under 45 mins", "Under 60 mins", "Under 15 mins"
     ],
   "meal":
     [
