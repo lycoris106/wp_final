@@ -246,9 +246,6 @@ mutation {
 ```
 
 ## Subscription
-""Subscription"""
-    type Subscription {
-        recipeCreated: Recipe!
-        recipeUpdated: Recipe!
-        recipeDeleted: ID!
-    }
+### 1. subscription recipeCreated
+### 2. subscription recipeUpdated
+### 3. subscription recipeDeleted
