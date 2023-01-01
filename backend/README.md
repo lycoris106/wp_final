@@ -244,3 +244,8 @@ mutation {
     }
 }
 ```
+
+## Subscription
+### 1. subscription recipeCreated
+### 2. subscription recipeUpdated
+### 3. subscription recipeDeleted
