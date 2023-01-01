@@ -27,12 +27,16 @@ export default function IngredItem ( {ingred, matches} ) {
               <CheckIcon sx={{ color: "orange" }}/>
             </ListItemIcon>
             <ListItemText
-              primary={<Typography variant="body1">{ingred}</Typography>}
+              primary={ingred}
+              secondary={null}
+
             />
             </>) : (
               <ListItemText
                 inset
-                primary={<Typography variant="body1">{ingred}</Typography>}
+                primary={ingred}
+                secondary={null}
+
               />
               )
       }

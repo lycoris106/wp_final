@@ -11,8 +11,9 @@ import {
   Divider
 
 } from "@mui/material";
+import React from "react";
 
-export default function Instruction( { instructions } ) {
+export default function InstructionList( { instructions } ) {
   return (
     <Card sx={{ backgroundColor: "#fcf9f4"}}>
       <Box sx={{ minWidth: 1050 }}>
@@ -27,34 +28,39 @@ export default function Instruction( { instructions } ) {
             Instructions
           </Typography>
         </Toolbar>
+        <Divider />
         <Table title="Instructions">
           <TableBody>
             {instructions.map((instruct, idx) => (
-              <TableRow hover key={'instruct'+idx}>
-                <TableCell width="10%">
+              <TableRow hover key={'row'+idx}>
+                <TableCell key={'cell'+idx+'1'} width="10%">
                   <Typography
+                    key={'typo'+idx+'1'}
                     variant="h5"
                     color="primary"
                   >
                     {'Step '+(idx+1)}
                   </Typography>
                 </TableCell>
-                <TableCell width="15%">
+                <TableCell key={'cell'+idx+'2'} width="15%">
                   <Typography
+                    key={'typo'+idx+'2'}
                     variant="h6"
                     color="secondary"
                   >
                     {instruct.title}
                   </Typography>
                 </TableCell>
-                <TableCell align="left">
+                <TableCell key={'cell'+idx+'3'} align="left">
                   {
-                    instruct.contents.map((content, idx) => (<>
-                      {idx !== 0 && <Divider/>}
-                      <Typography key={"content"+idx} variant="body1" width="75%" >
-                        {content}
-                      </Typography>
-                    </>))
+                    instruct.contents.map((content, idx) => (
+                      <React.Fragment key={'frag'+idx}>
+                        {idx !== 0 && <Divider key={'divid'+idx}/>}
+                        <Typography key={"content"+idx} variant="body1" width="75%" >
+                          {content}
+                        </Typography>
+                      </React.Fragment>
+                    ))
                   }
                   {/* <Typography variant="body1" width="75%" >
                     {instruct.contents.join(' ')}

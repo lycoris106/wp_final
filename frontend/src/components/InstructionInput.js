@@ -1,18 +1,32 @@
-import { Container, TextField } from "@mui/material";
+import {
+  Container,
+  TextField,
+  Grid,
+} from "@mui/material";
 
 
-export default function InstructionInput ({ index, instruction }) {
+export default function InstructionInput ({ index, ins, handleInsChange }) {
   return (
-    <Container key={"container" + index} sx={{ display: "flex", justifyContent: "space-between" }}>
-      <TextField
-        fullWidth
-        key={"text" + index}
-        id="outlined-multiline-static"
-        multiline
-        rows={3}
-        label={"Step " + (index + 1)}
-        placeholder={"Instruction"}
+    <>
+      <Grid item xs={3}>
+        <TextField
+          fullWidth value={ins.title} key={"Subtitle" + index} id="outlined-basic" label="Subtitle" placeholder="Ex. Prepare the batter"
+          onChange={(e) => {handleInsChange(e, index, "title")}}
         />
-    </Container>
+      </Grid>
+      <Grid item xs={8}>
+        <TextField
+          fullWidth
+          key={"text" + index}
+          value={ins.contents}
+          id="outlined-multiline-static"
+          multiline
+          rows={3}
+          label={"Step " + (index + 1)}
+          placeholder={"Instruction"}
+          onChange={(e) => {handleInsChange(e, index, "contents")}}
+        />
+      </Grid>
+    </>
   );
 };

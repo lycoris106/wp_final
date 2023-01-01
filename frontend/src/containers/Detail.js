@@ -138,32 +138,6 @@ const Detail = () => {
           </Box>
         </Grid>
       </Grid>
-      {/* <Container  sx={{ display: "flex", flexDirection: "column", rowGap: "10px" }} >
-      <Container maxWidth="md" sx={{
-        display: 'flex',
-        justifyContent: "space-between",
-        alignContent: "center",
-        maxHeight: "10vh",
-         }}>
-        <Typography variant="h3" component="div" align="center" sx={{ textAlign: "center" }}>
-            {title}
-          </Typography>
-          <Typography variant="h5" component="div" align="center">
-            {"Customized?"}
-          </Typography>
-      </Container>
-      <Divider variant="middle" />
-      <Container maxWidth="md" sx={{ display: 'flex', justifyContent: "space-between" }}>
-        <CardMedia component="img" image={imgURL} sx={{ maxWidth: "50%" }}/>
-        <Typography variant="h5" component="div">other infomations</Typography>
-      </Container>
-      <Divider variant="middle" />
-      <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", rowGap: "1em"}}>
-        {instructions.map((ins, index) => (
-          <Instruction key={index} instruction={ins} index={index} />
-        ))}
-      </Container>
-      </Container> */}
     </Layout>
   );
 }

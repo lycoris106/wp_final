@@ -23,6 +23,9 @@ const theme = createTheme({
     //   default: "#303030",
     // },
   },
+  typography: {
+    fontFamily:  'Raleway, sans-serif'
+  }
 });
 
 function App() {
