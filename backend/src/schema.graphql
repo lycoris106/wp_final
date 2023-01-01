@@ -41,6 +41,8 @@
         matches: [Boolean]
         tags: [String]
         time: Time
+        next: String
+        prev: String
     }
 
 """Input"""

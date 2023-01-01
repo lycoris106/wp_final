@@ -6,9 +6,9 @@ const Query = {
 
     recipes: async (parent, {ingredients}, {recipeModel}) => {
         const projection = "id title image_url ingredients tags";
-        const recipes = await recipeModel.find({}, projection);
+        let recipes = await recipeModel.find({}, projection);
 
-        return recipes.filter((recipe) => {
+        recipes =  recipes.filter((recipe) => {
             for (const description of recipe.ingredients) {
                 for (var ingredient of ingredients) {
                     if (description.toLowerCase().includes(ingredient.toLowerCase()))
@@ -20,6 +20,12 @@ const Query = {
             recipe.ingredients = null;
             return recipe;
         });
+
+        for (let i = 0, n = recipes.length; i < n; i++) {
+            recipes[i].prev = recipes[(i + n - 1)%n].id;
+            recipes[i].next = recipes[(i + 1)%n].id;
+        }
+        return recipes;
     },
 
     recipe: async (parent, {id, ingredients}, {recipeModel}) => {

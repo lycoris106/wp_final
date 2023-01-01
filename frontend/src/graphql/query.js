@@ -6,8 +6,9 @@ export const SEARCH_QUERY = gql`
             id
             title
             image_url
-            ingredients
             tags
+            prev
+            next
         }
     }
 `;
