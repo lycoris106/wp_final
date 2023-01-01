@@ -8,7 +8,10 @@ import {
 import CheckIcon from '@mui/icons-material/Check';
 
 
-export default function IngredItem ( {ingred} ) {
+export default function IngredItem ( {ingred, matches} ) {
+  if (ingred == '\u00a0') {
+    return;
+  }
   return (
     <ListItem>
       {
@@ -18,15 +21,20 @@ export default function IngredItem ( {ingred} ) {
               primary={<Typography variant="h6" >{ingred}</Typography>}
               // primary={<Typography variant="overline" sx={{ fontSize: 'h6.fontSize' }}>{ingred}</Typography>}
             />
-          </>)
-          : (<>
+          </>) :
+          (matches)? (<>
             <ListItemIcon>
               <CheckIcon sx={{ color: "orange" }}/>
             </ListItemIcon>
             <ListItemText
               primary={<Typography variant="body1">{ingred}</Typography>}
             />
-          </>)
+            </>) : (
+              <ListItemText
+                inset
+                primary={<Typography variant="body1">{ingred}</Typography>}
+              />
+              )
       }
 
     </ListItem>

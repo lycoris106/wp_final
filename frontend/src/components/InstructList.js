@@ -47,9 +47,16 @@ export default function Instruction( { instructions } ) {
                   </Typography>
                 </TableCell>
                 <TableCell align="left">
-                  <Typography variant="body1" width="75%" >
+                  {
+                    instruct.contents.map((content, idx) => (
+                      <Typography key={"content"+idx} variant="body1" width="75%" >
+                        {content}
+                      </Typography>
+                    ))
+                  }
+                  {/* <Typography variant="body1" width="75%" >
                     {instruct.contents.join(' ')}
-                  </Typography>
+                  </Typography> */}
                 </TableCell>
               </TableRow>
             ))}

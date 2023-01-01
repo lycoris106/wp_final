@@ -55,16 +55,24 @@ const Detail = () => {
 
   const { data, loading, subscribeToMore } = useQuery(GET_RECIPE_QUERY, {
     variables: {
-      id: id
+      id: id,
+      ingredients: searchList
     }
   });
+
+  useEffect(() => {
+    // console.log('data', data);
+    if (data) {
+      console.log('data.recipe:', data.recipe);
+    }
+  }, [data]);
 
   // const title = data.recipe.title;
   // const imgURL = data.recipe.image_url;
   // const instructions = data.recipe.instructions;
   // const ingredList = data.recipe.ingredients;
 
-  if (loading || (!data.recipe)) return <p>Loading...</p>;
+  if (loading || (!data.recipe) || (!data.recipe.tags) || (!data.recipe.ingredients) || (!data.recipe.instructions)) return <p>Loading...</p>;
 
   return (
     <Layout>
@@ -115,10 +123,8 @@ const Detail = () => {
             <Divider />
             <List>
               {
-                data.recipe.ingredients.filter((ing) =>
-                  ing!=="\u00a0"
-                ).map((ing) => (
-                  <IngredItem key={ing} ingred={ing}/>
+                data.recipe.ingredients.map((ing, idx) => (
+                  <IngredItem key={'ing'+idx} ingred={ing} matches={data.recipe.matches[idx]}/>
                 ))
               }
 
