@@ -4,17 +4,15 @@ import { WebSocketServer } from 'ws'
 import { createSchema, createYoga, createPubSub } from 'graphql-yoga';
 import { useServer } from 'graphql-ws/lib/use/ws'
 
-// resolvers
+/* resolvers */
 import Query from "./resolvers/Query.js";
 import Mutation from "./resolvers/Mutation.js";
-// import Subscription from "./resolvers/Subscription.js";
-// import DateResolver from "./resolvers/Date.js";
-// import CategoryResolver from "./resolvers/Category.js";
+import Subscription from "./resolvers/Subscription.js";
 
-// db
+/* db */
 import recipeModel from "./models/recipe.js";
 
-const pubSub = createPubSub();
+const pubSub = createPubSub()
 
 const yoga = createYoga({
     schema: createSchema({
@@ -22,9 +20,7 @@ const yoga = createYoga({
         resolvers: {
             Query,
             Mutation,
-            // Subscription,
-            // Date: DateResolver,
-            // Category: CategoryResolver,
+            Subscription,
         },
     }),
     context: {

@@ -244,3 +244,11 @@ mutation {
     }
 }
 ```
+
+## Subscription
+""Subscription"""
+    type Subscription {
+        recipeCreated: Recipe!
+        recipeUpdated: Recipe!
+        recipeDeleted: ID!
+    }

@@ -13,7 +13,7 @@ const Mutation =  {
         const createdRecipe = new recipeModel(input);
         await createdRecipe.save();
 
-        pubSub.publish("RECIPE_CREATED", {
+        pubSub.publish('RECIPE_CREATED', {
             recipeCreated: createdRecipe,
         });
         return createdRecipe;
@@ -26,7 +26,7 @@ const Mutation =  {
         await recipeModel.updateOne({id: input.id}, input);
 
         const updatedRecipe = await recipeModel.findOne({id: input.id});
-        pubSub.publish("RECIPE_UPDATED", {
+        pubSub.publish('RECIPE_UPDATED', {
             recipeUpdated: updatedRecipe,
         });
         return updatedRecipe;
@@ -38,7 +38,7 @@ const Mutation =  {
             return null;
         await recipeModel.deleteOne({ id });
 
-        pubSub.publish("RECIPE_DELETED", {
+        pubSub.publish('RECIPE_DELETED', {
             recipeDeleted: id,
         });
         return id;

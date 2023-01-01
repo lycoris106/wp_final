@@ -12,6 +12,13 @@
         deleteRecipe(id: ID!): ID
     }
 
+"""Subscription"""
+    type Subscription {
+        recipeCreated: Recipe!
+        recipeUpdated: Recipe!
+        recipeDeleted: ID!
+    }
+
 """Type"""
     type Instruction {
         title: String
