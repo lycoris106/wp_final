@@ -7,7 +7,8 @@ import {
   TableRow,
   Typography,
   TableCell,
-  Toolbar
+  Toolbar,
+  Divider
 
 } from "@mui/material";
 
@@ -48,11 +49,12 @@ export default function Instruction( { instructions } ) {
                 </TableCell>
                 <TableCell align="left">
                   {
-                    instruct.contents.map((content, idx) => (
+                    instruct.contents.map((content, idx) => (<>
+                      {idx !== 0 && <Divider/>}
                       <Typography key={"content"+idx} variant="body1" width="75%" >
                         {content}
                       </Typography>
-                    ))
+                    </>))
                   }
                   {/* <Typography variant="body1" width="75%" >
                     {instruct.contents.join(' ')}

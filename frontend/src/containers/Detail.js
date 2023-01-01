@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useParams, useLocation } from 'react-router-dom';
 import Layout from "../components/Layout/Layout.js";
-import InstructList from "../components/InstructList.js";
+import InstructList from "../components/Detail/InstructList.js";
 import IngredItem from "../components/Detail/IngredItem"
 import { styled } from '@mui/material/styles';
 import {
