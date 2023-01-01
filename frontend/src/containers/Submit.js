@@ -4,14 +4,16 @@ import IngredientInput from "../components/IngredientInput";
 import InstructionInput from "../components/InstructionInput";
 import AddIcon from "@mui/icons-material/Add";
 import CancelIcon from '@mui/icons-material/Cancel';
-import { TextField, 
-  Paper, 
-  Container, 
-  Divider, 
+import {
+  TextField,
+  Paper,
+  Container,
+  Divider,
   Typography,
   Fab,
-  IconButton, 
-  Button} from "@mui/material";
+  IconButton,
+  Button
+} from "@mui/material";
 
 
 const Submit = () => {
@@ -53,7 +55,7 @@ const Submit = () => {
         <Container maxWidth="md" >
           <Typography variant="h5">Title</Typography>
           <TextField fullWidth
-            id="outlined-basic" 
+            id="outlined-basic"
             placeholder="Recipe Title"
             margin="normal"
             autoFocus={true} />
@@ -99,9 +101,9 @@ const Submit = () => {
         <Container maxWidth="sm">
           <Button fullWidth variant="contained" size="large" >Submit</Button>
         </Container>
-            
+
       </Paper>
-            
+
     </Layout>
   );
 };
