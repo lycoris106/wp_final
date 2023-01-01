@@ -6,12 +6,12 @@
 #### 1. data example
 - refer to submodule `scraper`
 #### 2. git submodule management
-- update to the version recorded in current repository (for collaborator)
+- update to the version recorded in current repository (for all collaborator)
 ```
 git pull --rebase
 git submodule update
 ```
-- update to the latest version of remote submodule repository (for developer)
+- update to the latest version of remote submodule repository (for developer only)
 ```
 git submodule update --remote
 git add .
@@ -68,7 +68,6 @@ query {
 ```
 
 ### 2. query recipes
-- only return `id`, `title`, `image_url`, `tags` fields with value
 #### invalid query
 ```
 query {
@@ -76,17 +75,9 @@ query {
         id
         title
         image_url
-        ingredients
-        instructions {
-            title
-            contents
-        }
         tags
-        time {
-            preparation
-            cook
-            cleanup
-        }
+        prev
+        next
     }
 }
 ```
@@ -97,17 +88,9 @@ query {
         id
         title
         image_url
-        ingredients
-        instructions {
-            title
-            contents
-        }
         tags
-        time {
-            preparation
-            cook
-            cleanup
-        }
+        prev
+        next
     }
 }
 ```
@@ -118,17 +101,9 @@ query {
         id
         title
         image_url
-        ingredients
-        instructions {
-            title
-            contents
-        }
         tags
-        time {
-            preparation
-            cook
-            cleanup
-        }
+        prev
+        next
     }
 }
 ```
@@ -145,6 +120,7 @@ query {
         title
         image_url
         ingredients
+        matches
         instructions {
             title
             contents
@@ -169,7 +145,7 @@ query {
         title
         image_url
         ingredients
-    		matches
+        matches
         instructions {
             title
             contents
@@ -194,7 +170,7 @@ mutation {
     }) {
         id
         title
-    		content
+    	content
         image_url
         ingredients
         instructions {
@@ -219,7 +195,7 @@ mutation {
     }) {
         id
         title
-    		content
+    	content
         image_url
         ingredients
         instructions {
