@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
-import IngredientInput from "../components/IngredientInput";
-import InstructionInput from "../components/InstructionInput";
+import IngredientInput from "../components/Submit/IngredientInput";
+import InstructionInput from "../components/Submit/InstructionInput";
 import AddIcon from "@mui/icons-material/Add";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {
@@ -10,25 +10,39 @@ import {
   Container,
   Divider,
   Typography,
-  Fab,
   IconButton,
-  Button
-} from "@mui/material";
-
-import {
+  Button,
+  Autocomplete,
   Card,
   CardHeader,
   CardContent,
   Grid
 } from "@mui/material";
 
+import tagsData from '../json/tags.json';
+
+const allTags = [];
+Object.values(tagsData).forEach((l) => {
+  // allTags.push(...l);
+  l.forEach((li) => {
+    allTags.push({
+      label: li
+    });
+  })
+
+})
+
+
 
 const Submit = () => {
   const [title, setTitle] = useState("");
-  // const
+  const [url, setUrl] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
+  const [tags, setTags] = useState([]);
   const [recipeData, setRecipeData] = useState({});
+
+  // console.log(allTags);
 
   const handleAddIngredient = () => {
     setIngredients((prev) => ([...prev, {
@@ -54,14 +68,30 @@ const Submit = () => {
   };
 
   const handleDeleteInstruction = (index) => {
-      const newInstructions = [...instructions];
-      newInstructions.splice(index, 1);
-      setInstructions(newInstructions);
+    const newInstructions = [...instructions];
+    newInstructions.splice(index, 1);
+    setInstructions(newInstructions);
   };
+
+  const handleAddTag = () => {
+    setTags((prev) => ([...prev, ""]))
+  }
+
+  const handleDeleteTag = (index) => {
+    const newTags = [...tags];
+    newTags.splice(index, 1);
+    setTags(newTags);
+  }
 
   const handleTitleChange = (evt) => {
     const newTitle = evt.target.value;
     setTitle(newTitle);
+    // console.log(newTitle);
+  }
+
+  const handleUrlChange = (evt) => {
+    const newUrl = evt.target.value;
+    setUrl(newUrl);
     // console.log(newTitle);
   }
 
@@ -76,12 +106,18 @@ const Submit = () => {
     let newInsts = [...instructions];
     newInsts[idx][field] = evt.target.value;
     setInstructions(newInsts);
-    console.log(newInsts);
+    // console.log(newInsts);
+  }
+
+  const handleTagChange = (evt, newValue, idx) => {
+    let newTags = [...tags];
+    newTags[idx] = newValue;
+    setTags(newTags);
+    console.log(newTags);
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
   }
 
   useEffect(() => {
@@ -98,7 +134,7 @@ const Submit = () => {
       instructions: instList
     };
 
-    console.log(newRecipeData);
+    // console.log(newRecipeData);
     setRecipeData(newRecipeData);
   }, [title, ingredients, instructions]);
 
@@ -122,6 +158,7 @@ const Submit = () => {
               <Typography variant="h5">Title</Typography>
               <TextField fullWidth
                 required
+                value={title}
                 id="outlined-required"
                 label="Recipe Title"
                 placeholder="Ex. Strawberry Cake"
@@ -133,8 +170,23 @@ const Submit = () => {
 
             <Divider sx={{ my: 2 }}/>
 
+            <Container maxWidth="md" >
+              <Typography variant="h5">Image URL</Typography>
+              <TextField fullWidth
+                value={url}
+                id="outlined-basic"
+                label="Reference Image URL"
+                placeholder="Ex. http://imgur.com/123456"
+                margin="normal"
+                autoFocus={true}
+                onChange={handleUrlChange}
+              />
+            </Container>
+
+            <Divider sx={{ my: 2 }}/>
+
             <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", rowGap: "5px" }} >
-              <Typography variant="h5" sx={{ mb: 2 }} >Ingredients</Typography>
+              <Typography variant="h5" sx={{ mb: 1 }} >Ingredients</Typography>
               {ingredients.map((ingredient, index) => {
                 return (
                   <Grid key={'ing'+index} container spacing={1}>
@@ -160,28 +212,81 @@ const Submit = () => {
             <Divider sx={{ my: 2 }}/>
 
             <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", rowGap: "15px" }} >
-              <Typography variant="h5" sx={{ mb: 2 }}>Instructions</Typography>
-              {instructions.map((ins, index) => {
-                return (
-                  <Grid key={'ins'+index} container spacing={1}>
-                    <InstructionInput
-                      ins={ins}
-                      index={index}
-                      handleInsChange={handleInsChange}
-                    />
-                    <Grid item xs={1} display="flex" alignItems="center">
-                      <IconButton key={"button" + index} aria-label="cancel" onClick={() => {handleDeleteInstruction(index);}}>
-                        <CancelIcon key={"cancel" + index} />
-                      </IconButton>
+              <Typography variant="h5" sx={{ mb: 1 }}>Instructions</Typography>
+              {
+                instructions.map((ins, index) => {
+                  return (
+                    <Grid key={'ins'+index} container spacing={1}>
+                      <InstructionInput
+                        ins={ins}
+                        index={index}
+                        handleInsChange={handleInsChange}
+                      />
+                      <Grid item xs={1} display="flex" alignItems="center">
+                        <IconButton key={"button" + index} aria-label="cancel" onClick={() => {handleDeleteInstruction(index);}}>
+                          <CancelIcon key={"cancel" + index} />
+                        </IconButton>
+                      </Grid>
                     </Grid>
-                  </Grid>
-                )
+                  );
               })}
 
               <Button color="primary" variant="contained" sx={{ width: "80px" }} onClick={handleAddInstruction}>
                 <AddIcon />
               </Button>
             </Container>
+
+            <Divider sx={{ my: 2 }}/>
+
+            <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", rowGap: "15px" }} >
+              <Typography variant="h5" sx={{ mb: 1 }}>Tags</Typography>
+              {
+                tags.map((tag, index) => {
+                  return (
+                    <Grid container spacing={1} key={'tag'+index}>
+                      <Grid item xs={3}>
+                      <Autocomplete
+                        disablePortal
+                        id="combo-box-tag"
+                        options={allTags}
+                        getOptionLabel={(option) => (option ? option.label : "")}
+                        renderInput={params => (
+                          <TextField
+                            required
+                            id="outlined-required"
+                            {...params}
+                            label="Tag"
+                            variant="outlined"
+                            fullWidth
+                          />
+                        )}
+                        // renderOption={(props, option) => {
+                        //   return (
+                        //     <li {...props} key={option.id}>
+                        //       {option.name}
+                        //     </li>
+                        //   );
+                        // }}
+                        sx={{ width: 200 }}
+                        value={tag}
+                        onChange={(evt, newValue) => {handleTagChange(evt, newValue, index)}}
+                      />
+                      </Grid>
+                      <Grid item xs={1} display="flex" alignItems="center">
+                        <IconButton aria-label="cancel" onClick={() => {handleDeleteTag(index);}}>
+                          <CancelIcon/>
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+
+                  );
+                })
+              }
+              <Button color="primary" variant="contained" sx={{ width: "80px" }} onClick={handleAddTag}>
+                <AddIcon />
+              </Button>
+            </Container>
+
 
           </CardContent>
         </Card>

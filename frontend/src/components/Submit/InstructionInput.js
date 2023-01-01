@@ -17,9 +17,10 @@ export default function InstructionInput ({ index, ins, handleInsChange }) {
       <Grid item xs={8}>
         <TextField
           fullWidth
+          required
           key={"text" + index}
           value={ins.contents}
-          id="outlined-multiline-static"
+          id="outlined-multiline-required"
           multiline
           rows={3}
           label={"Step " + (index + 1)}
