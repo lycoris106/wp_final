@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import Layout from "../components/Layout/Layout.js";
 import InstructList from "../components/Detail/InstructList.js";
 import IngredItem from "../components/Detail/IngredItem"
@@ -51,10 +51,18 @@ const StyledPaper = styled(Paper, {
 
 const Detail = () => {
 
+  let { id } = useParams();
+
   const location = useLocation();
   const searchList = location.state.searchList;
+  const recipes = location.state.recipes;
+  const curRecipe = recipes.find((rec) => {
+    return rec.id === id;
+  })
+  const prevID = curRecipe.prev;
+  const nextID = curRecipe.next;
 
-  let { id } = useParams();
+
 
   const { data, loading, subscribeToMore } = useQuery(GET_RECIPE_QUERY, {
     variables: {
@@ -62,6 +70,10 @@ const Detail = () => {
       ingredients: searchList
     }
   });
+
+  const handleSwap = () => {
+
+  }
 
   useEffect(() => {
     // console.log('data', data);
@@ -80,12 +92,25 @@ const Detail = () => {
   return (
     <Layout>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
-        <Button variant="contained" style={{textTransform: 'none'}}>
-          Prev Recipe
-        </Button>
-        <Button variant="contained" style={{textTransform: 'none'}}>
-          Next Recipe
-        </Button>
+        <Link
+          to={`/detail/${prevID}`}
+          state={{ searchList: searchList, recipes: recipes }}
+          style={{ textDecoration: 'none' }}
+        >
+          <Button variant="contained" style={{textTransform: 'none'}} >
+            Prev Recipe
+          </Button>
+        </Link>
+
+        <Link
+          to={`/detail/${nextID}`}
+          state={{ searchList: searchList, recipes: recipes }}
+          style={{ textDecoration: 'none' }}
+        >
+          <Button variant="contained" style={{textTransform: 'none'}} >
+            Next Recipe
+          </Button>
+        </Link>
       </Box>
 
       <Grid container spacing={1}>

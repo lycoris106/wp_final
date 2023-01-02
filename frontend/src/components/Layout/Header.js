@@ -43,12 +43,20 @@ const Header = () => {
         {/* Router Button */}
         <Box sx={{ flexGrow: 0.2, display: { xs: 'none', md: 'flex' } }}>
           <Button
+            key={"Submit"}
+            onClick={() => { navigate(`/submit`) }}
+            sx={{ fontSize: 20, color: 'inherit', display: 'block', px: 3 }}
+          >
+            {"Submit"}
+          </Button>
+          <Button
             key={"Home"}
             onClick={() => { navigate(`/search`) }}
-            sx={{ fontSize: 20, color: 'inherit', display: 'block' }}
+            sx={{ fontSize: 20, color: 'inherit', display: 'block', px: 3}}
           >
             {"Home"}
           </Button>
+
           {/* <Button
             key={"About"}
             onClick={() => { navigate(`/login/${UserData.username}/about`) }}

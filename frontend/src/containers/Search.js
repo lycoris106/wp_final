@@ -17,14 +17,28 @@ import {
 } from '@mui/material';
 
 
-import ingredData from '../devFiles/ingredData.json';
+import ingredData from '../json/ingredients.json';
+
+const ingredSet = [];
+Object.keys(ingredData).forEach((key) => {
+  ingredData[key].forEach((li) => {
+    if (!ingredSet.hasOwnProperty(li)) {
+      ingredSet[li] = key;
+    }
+
+  })
+})
 
 const colorMap = {
-  "meat": "error",
-  "vegetable": "success",
-  "dairy&egg": "warning",
-  "fruit": "info",
-  "other": "secondary"
+  meat: "error",
+  vegetable: "success",
+  manufactured: "warning",
+  fruit: "info",
+  seasoning: "secondary",
+  grain: "default",
+  sauce: "default",
+  husbandry: "default"
+
 };
 
 const Search = () => {
@@ -64,7 +78,7 @@ const Search = () => {
                 title="What's in your fridge?"
               />
               <Divider />
-              <Stack direction="row" spacing={2}>
+              <Box sx={{ display: "flex", justifyContent: "center", flexWrap: 'wrap'}}>
                 <Button
                   value={'All'}
                   variant={('All' === filter)? "contained" : "default" }
@@ -85,7 +99,7 @@ const Search = () => {
                     );
                   })
                 }
-              </Stack>
+              </Box>
               <Divider />
               <CardContent>
                 <Grid
@@ -94,29 +108,32 @@ const Search = () => {
                   sx={{ m: 1 }}
                 >
                   {
-                    ingredData.map((ingred) => {
-                      let color = undefined;
-                      ingred.type.forEach((clas) => {
-                        if (clas in colorMap) {
-                          color = colorMap[clas];
-                          return
-                        }
-                      })
-                      if (filter === 'All' || ingred.type.includes(filter)) {
-                        return (
-                          <Grid key={'grid'+ingred.id}
-                            item
-                          >
-                            <Chip key={'chip'+ingred.id} label={ingred.name}
-                              variant={selected.has(ingred.name)? "outlined" : "outlined"}
-                              color={color} sx={{ m: 0.6, backgroundColor: selected.has(ingred.name)? "#b9b9b9" : "default" }}
-                              onClick={() => handleSelectionChanged(ingred.name)}
-                            />
-                          </Grid>
-                        );
-                      }
-
-                      return;
+                    (filter === 'All') ?
+                    Object.keys(ingredSet).map((key) => {
+                      let color = colorMap[ingredSet[key]];
+                      return (
+                        <Grid key={'grid'+key}
+                          item
+                        >
+                          <Chip key={'chip'+key} label={key}
+                            variant={"outlined"}
+                            color={color} sx={{ m: 0.6, backgroundColor: selected.has(key)? "#b9b9b9" : "default" }}
+                            onClick={() => handleSelectionChanged(key)}
+                          />
+                        </Grid>
+                      );
+                    }) : ingredData[filter].map((ingred) => {
+                      return (
+                        <Grid key={'grid'+ingred}
+                          item
+                        >
+                          <Chip key={'chip'+ingred} label={ingred}
+                            variant={"outlined"}
+                            color={colorMap[filter]} sx={{ m: 0.6, backgroundColor: selected.has(ingred)? "#b9b9b9" : "default" }}
+                            onClick={() => handleSelectionChanged(ingred)}
+                          />
+                        </Grid>
+                      );
                     })
                   }
 
@@ -133,13 +150,13 @@ const Search = () => {
               <CardContent>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
                   {
-                    ingredData.map((ingred) => {
-                      if (selected.has(ingred.name)) {
+                    Object.keys(ingredSet).map((key) => {
+                      if (selected.has(key)) {
                         return (
-                          <Chip key={'chip_'+ingred.id} label={ingred.name}
+                          <Chip key={'chip_'+key} label={key}
                             variant="outlined"
                             sx={{ m: 0.6 }}
-                            onDelete={() => handleIngredDelete(ingred.name)}
+                            onDelete={() => handleIngredDelete(key)}
                           />
                         )
                       }

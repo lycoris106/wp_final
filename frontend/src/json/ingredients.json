@@ -11,7 +11,7 @@
     "seasoning":
         [
             "Garlic", "Galangal", "Pandan", "Pepper", "Chili", "Ginger", "Cloves", "Shallots", "Coriander",
-            "Turmeric", "Galangal", "Cayenne", "Cumin", "Curry", "Cinnamon", "Vanilla", "Masala", "Mint",
+            "Turmeric", "Cayenne", "Cumin", "Curry", "Cinnamon", "Vanilla", "Masala", "Mint",
             "Peppercorns", "Cardamom", "Anise", "Nutmeg", "Caster", "Scallion", "Fennel", "Paprika", "Fenugreek", "Onion"
         ],
     "sauce":
@@ -24,7 +24,7 @@
         ],
     "vegetable":
         [
-            "Nuts", "Mushroom", "Sweet Potato", "Zucchini", 
+            "Nuts", "Mushroom", "Sweet Potato", "Zucchini",
             "Avocado", "Coconut", "Soy", "Onion", "Sesame", "Tomato", "Pandan",
             "Lemongrass", "Corn", "Bean", "Carrot", "Candlenut", "Cabbage", "Olive", "Kaffir",
             "Tamarind", "Basil", "Potato", "Peanuts", "Cucumber", "Leek", "Shiitake",
@@ -32,7 +32,7 @@
             "Lettuce", "Seaweed", "Almonds", "Kimchi", "Pods", "Pumpkin",
             "Cashew", "Cilantro", "Broccoli", "Chives", "Eggplant", "Florets", "Cassava"
         ],
-    "fruit": 
+    "fruit":
         [
             "Apple", "Jackfruit", "Tomato", "Lemon", "Pineapple", "Cherry", "Orange", "Mango", "Banana", "Lime"
         ],
@@ -40,6 +40,6 @@
         [
             "Cheese", "Chocolate", "Gula Melaka", "Salted Egg", "Tempeh", "Cornstarch", "Tofu", "Tapioca",
             "Wine", "Soda", "Yogurt", "Ghee", "Cheddar", "Shaoxing Wine", "Agar Powder", "Yeast", "Mozzarella",
-            "Curd", "Margarine", "Coconut milk", "Tempeh", "Icing", "Jelly", "Kimchi"
+            "Curd", "Margarine", "Coconut milk", "Icing", "Jelly", "Kimchi"
         ]
 }

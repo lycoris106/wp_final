@@ -44,6 +44,7 @@ const Result = (props) => {
                   title={recipe.title}
                   tags={recipe.tags}
                   searchList={ingredList}
+                  recipes={data.recipes}
                 />
               </Grid>
             )

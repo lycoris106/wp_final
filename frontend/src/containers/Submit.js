@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import IngredientInput from "../components/Submit/IngredientInput";
 import InstructionInput from "../components/Submit/InstructionInput";
 import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from '@mui/icons-material/Close';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {
   TextField,
@@ -16,7 +17,8 @@ import {
   Card,
   CardHeader,
   CardContent,
-  Grid
+  Grid,
+  Snackbar
 } from "@mui/material";
 
 import { useMutation } from '@apollo/client';
@@ -46,6 +48,29 @@ const Submit = () => {
   const [recipeData, setRecipeData] = useState({});
 
   const [createRecipe] = useMutation(CREATE_RECIPE_MUTATION);
+
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </>
+  );
 
   // console.log(allTags);
 
@@ -129,6 +154,14 @@ const Submit = () => {
         input: recipeData
       },
     });
+
+    setTitle('');
+    setUrl('');
+    setIngredients([]);
+    setInstructions([]);
+    setTags([]);
+
+    setOpen(true);
   }
 
   useEffect(() => {
@@ -320,6 +353,13 @@ const Submit = () => {
           </Button>
         </Container>
       </form>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="Recipe submited"
+        action={action}
+      />
     </Layout>
   );
 

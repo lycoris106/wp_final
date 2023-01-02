@@ -22,14 +22,14 @@ const colorMap = {
 }
 
 
-export default function RecipeCard({id, imageURL, title, tags, searchList}) {
+export default function RecipeCard({id, imageURL, title, tags, searchList, recipes}) {
   // console.log(tagDict);
 
   return (
     <Card sx={{ width: 340, height: 380 }}>
       <CardActionArea component={Link}
         to={`/detail/${id}`}
-        state={{ searchList: searchList }}
+        state={{ searchList: searchList, recipes: recipes }}
       >
       {/* <CardActionArea> */}
       {/* <Link
