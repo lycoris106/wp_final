@@ -19,6 +19,9 @@ import {
   Grid
 } from "@mui/material";
 
+import { useMutation } from '@apollo/client';
+import { CREATE_RECIPE_MUTATION } from '../graphql/mutations';
+
 import tagsData from '../json/tags.json';
 
 const allTags = [];
@@ -41,6 +44,8 @@ const Submit = () => {
   const [instructions, setInstructions] = useState([]);
   const [tags, setTags] = useState([]);
   const [recipeData, setRecipeData] = useState({});
+
+  const [createRecipe] = useMutation(CREATE_RECIPE_MUTATION);
 
   // console.log(allTags);
 
@@ -113,11 +118,17 @@ const Submit = () => {
     let newTags = [...tags];
     newTags[idx] = newValue;
     setTags(newTags);
-    console.log(newTags);
+    // console.log(newTags);
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    recipeData.tags.push('customized');
+    createRecipe({
+      variables: {
+        input: recipeData
+      },
+    });
   }
 
   useEffect(() => {
@@ -127,16 +138,23 @@ const Submit = () => {
         title: ins.title,
         contents: ins.contents.split("\n")
       };
-    })
+    });
+
+    const tagList = tags.filter((tag) => tag).map((tag) => {
+      return tag.label;
+    });
+
     let newRecipeData = {
       title: title,
+      image_url: url,
+      tags: tagList,
       ingredients: ingredList,
       instructions: instList
     };
 
-    // console.log(newRecipeData);
+    console.log(newRecipeData);
     setRecipeData(newRecipeData);
-  }, [title, ingredients, instructions]);
+  }, [title, url, ingredients, instructions, tags]);
 
 
   return (

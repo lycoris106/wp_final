@@ -44,7 +44,7 @@ export const UPDATE_RECIPE_MUTATION = gql`
     }
 `;
 
-export const DELETE_RECIPE_MUTATION = qgl`
+export const DELETE_RECIPE_MUTATION = gql`
     mutation DeleteRecipe($id: ID!) {
         deleteRecipe(id: $id)
     }

@@ -18,7 +18,9 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
-  Chip
+  Chip,
+  AppBar,
+  Toolbar
 } from "@mui/material";
 
 import { useQuery } from '@apollo/client';
@@ -30,6 +32,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import tagDict from '../json/tags.json';
 
 const colorMap = {
+  customized: "error",
   region: "primary",
   difficulty: "secondary",
   time: "info",
@@ -76,6 +79,15 @@ const Detail = () => {
 
   return (
     <Layout>
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+        <Button variant="contained" style={{textTransform: 'none'}}>
+          Prev Recipe
+        </Button>
+        <Button variant="contained" style={{textTransform: 'none'}}>
+          Next Recipe
+        </Button>
+      </Box>
+
       <Grid container spacing={1}>
         <Grid item xs={8}>
           <Card sx={{ width: 700, height:650, mb: 5}}>
@@ -100,6 +112,11 @@ const Detail = () => {
                 });
 
                 if (color) {
+                  if (color === "error") {
+                    return (
+                      <Chip key={'chip'+ind} label={tag} color={color} sx={{ m: 0.6 }} />
+                    );
+                  }
                   //  console.log(color);
                   return (
                     <Chip key={'chip'+ind} label={tag} color={color} variant="outlined" sx={{ m: 0.6 }} />

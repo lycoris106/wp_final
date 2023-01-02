@@ -15,6 +15,7 @@ import { styled } from '@mui/material/styles';
 import tagDict from '../json/tags.json';
 
 const colorMap = {
+  customized: "error",
   region: "primary",
   difficulty: "secondary",
   time: "info",
@@ -59,6 +60,11 @@ export default function RecipeCard({id, imageURL, title, tags, searchList}) {
 
                 if (color) {
                   //  console.log(color);
+                  if (color === "error") {
+                    return (
+                      <Chip key={'chip'+ind} label={tag} color={color} sx={{ m: 0.6 }} />
+                    );
+                  }
                   return (
                     <Chip key={'chip'+ind} label={tag} color={color} variant="outlined" sx={{ m: 0.6 }} />
                   );
