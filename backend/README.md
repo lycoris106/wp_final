@@ -45,46 +45,35 @@ git push
 ```
 
 ## Query
-### 1. query allrecipes (deprecated temporary)
+### 1. query recipes with `beef`, `garlic` included in `ingredients`
 ```
 query {
-    allrecipes {
-        id
-        title
-        image_url
-        ingredients
-        tags
-    }
-}
-```
-
-### 2. query recipes with `sugar` included in `ingredients`
-```
-query {
-    recipes (ingredients: ["sugar"]) {
-        id
-        title
-        image_url
-        tags
-        matches
+    recipes (ingredients: ["beef", "garlic"]) {
         prev
+        id
         next
+        title
+        image_url
+        ingredients {
+            content
+            match
+        }
+        tags
     }
 }
 ```
 
-### 3. query recipe
+### 2. query recipe
 ```
 query {
     recipe (
-        id: "11d40156893b11eda36d8b51443f2256"
+        id: "f62f10108aae11eda9ecf19f891c3f45"
     ) {
         content
         instructions {
             title
             contents
         }
-        ingredients
         time {
             preparation
             cook
@@ -99,14 +88,18 @@ query {
 ```
 mutation {
     createRecipe (input: {
-        id: "create"
         title: "Recipe for creating"
     }) {
+        prev
         id
+        next
         title
     	content
         image_url
-        ingredients
+        ingredients {
+          	content
+          	match
+        }
         instructions {
             title
             contents
@@ -125,13 +118,19 @@ mutation {
 ```
 mutation {
     updateRecipe (input: {
-        id: "update"
+        id: "f62f10108aae11eda9ecf19f891c3f45"
+        title: "update"
     }) {
+        prev
         id
+        next
         title
     	content
         image_url
-        ingredients
+        ingredients {
+            content
+            match
+        }
         instructions {
             title
             contents
@@ -149,9 +148,9 @@ mutation {
 ### 3. mutation deleteRecipe
 ```
 mutation {
-    deleteRecipe(id: "delete") {
-        id
-    }
+    deleteRecipe(
+      	id: "f62f10158aae11eda9ecf19f891c3f45"
+    )
 }
 ```
 

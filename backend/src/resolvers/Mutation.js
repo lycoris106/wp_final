@@ -4,14 +4,26 @@ const Mutation =  {
     createRecipe: async (parent, {input}, {recipeModel, pubSub}) => {
         console.log('createRecipe');
 
-        if (!input.id)
-            input.id = uuidv1().replaceAll("-", "");
-        
+        input.id = uuidv1().replaceAll("-", "");
         while (await recipeModel.findOne({id: input.id}))
             input.id = uuidv1().replaceAll("-", "");
+        
+        let nextRecipe = await recipeModel.findOne({}, "prev id");
+
+        input.next = nextRecipe.id
+        input.prev = nextRecipe.prev;
+        if (input.ingredients) {
+            input.ingredients.map((ingredient) => {
+                ingredient.match = false;
+                return ingredient;
+            })
+        }
 
         const createdRecipe = new recipeModel(input);
         await createdRecipe.save();
+        
+        nextRecipe.prev = input.id;
+        await nextRecipe.save();
 
         pubSub.publish('RECIPE_CREATED', {
             recipeCreated: createdRecipe,
@@ -36,6 +48,15 @@ const Mutation =  {
         console.log('deleteRecipe');
         if (! await recipeModel.findOne({ id }))
             return null;
+        let deletedRecipe = await recipeModel.findOne({id}, "prev next");
+        let prevRecipe = await recipeModel.findOne({id: deletedRecipe.prev}, "next");
+        let nextRecipe = await recipeModel.findOne({id: deletedRecipe.next}, "prev");
+
+        prevRecipe.next = deletedRecipe.next;
+        nextRecipe.prev = deletedRecipe.prev;
+
+        await prevRecipe.save();
+        await nextRecipe.save();
         await recipeModel.deleteOne({ id });
 
         pubSub.publish('RECIPE_DELETED', {

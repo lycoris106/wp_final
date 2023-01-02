@@ -1,30 +1,28 @@
 const Query = {
-    allrecipes: async (parent, {}, {recipeModel}) => {
-        return await recipeModel.find({}, "id title image_url ingredients tags");
-    },
-
     recipes: async (parent, {ingredients}, {recipeModel}) => {
         const recipes =  (await recipeModel.find({}, "id title image_url ingredients tags")).filter((recipe) => {
-            for (const description of recipe.ingredients) {
-                for (var ingredient of ingredients) {
-                    if (description.toLowerCase().includes(ingredient.toLowerCase()))
+            for (var ingredient of recipe.ingredients) {
+                for (var keyword of ingredients) {
+                    if (ingredient.content.toLowerCase().includes(keyword.toLowerCase())) {
+                        console.log(ingredient.content)
                         return true;
+                    }
                 }
             }
             return false;
         }).map((recipe) => {
-            const n = recipe.ingredients.length;
-            recipe.matches = Array(n).fill(false);
-            for (let i = 0; i < n; i++) {
-                for (var ingredient of ingredients) {
-                    if (recipe.ingredients[i].toLowerCase().includes(ingredient.toLowerCase())) {
-                        recipe.matches[i] = true;
+            for (var ingredient of recipe.ingredients) {
+                for (var keyword of ingredients) {
+                    if (ingredient.content.toLowerCase().includes(keyword.toLowerCase())) {
+                        ingredient.match = true;
                         break;
                     }
                 }
             }
-            recipe.ingredients = null;
             return recipe;
+        }).sort((left, right) => {
+            return left.ingredients.filter(ingredient => ingredient.match).length > 
+                right.ingredients.filter(ingredient => ingredient.match).length;
         });
 
         const n = recipes.length;
@@ -36,7 +34,7 @@ const Query = {
     },
 
     recipe: async (parent, {id}, {recipeModel}) => {
-        return await recipeModel.findOne({id: id}, "content instructions ingredients time");
+        return await recipeModel.findOne({id: id}, "content instructions time");
     }
 };
 

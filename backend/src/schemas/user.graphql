@@ -1,6 +1,6 @@
 """Query"""
     type Query {
-        
+        user(username: String!, password: String!): User
     }
 
 """Mutation"""
@@ -15,13 +15,15 @@
 
 """Type"""
     type User {
-        id: String!
-        username: String!
-        password: String! 
+        id: ID
     }
 
 """Input"""
-    input CreateUserInput{
+    input CreateUserInput {
         username: String!
         password: String!
+    }
+
+    input UpdateUserInput {
+        username: String!
     }

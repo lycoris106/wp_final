@@ -17,7 +17,6 @@ const pubSub = createPubSub()
 let typeDefs = "";
 for (const schema of ['recipe'])
     typeDefs += fs.readFileSync(`./src/schemas/${schema}.graphql`, 'utf-8') + '\n';
-console.log(typeDefs);
 
 const yoga = createYoga({
     schema: createSchema({
