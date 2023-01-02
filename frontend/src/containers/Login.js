@@ -67,7 +67,7 @@ const Login = () => {
   // 已登入者進到Login Page會自動被導向Search Page
   useEffect(() => {
     if (UserData.signed) {
-      navigate(`/login/${UserData.username}/search`);
+      navigate(`/user/${UserData.username}/search`);
     }
   });
 
