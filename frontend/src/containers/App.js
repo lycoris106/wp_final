@@ -8,6 +8,7 @@ import Search from './Search';
 import Result from './Result';
 import Detail from "./Detail";
 import Submit from "./Submit";
+import Login from "./Login";
 
 const theme = createTheme({
   palette: {
@@ -41,6 +42,8 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         { /* Page for testing Submit.js */ }
         <Route path="/submit" element={<Submit />} />
+        { /* Page for testing Login.js */ }
+        <Route path="/login" element={<Login />} />
 
         <Route path="/" element={<Navigate to="/search" />} />
       </Routes>
