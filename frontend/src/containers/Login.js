@@ -12,10 +12,14 @@ import {
 } from "@mui/material";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useState, useRef, useEffect, useContext } from "react";
+import { useMutation } from '@apollo/client';
 import { UserContext } from "./App";
+import { LOGIN_MUTATION } from "../graphql/mutations";
 
 const Login = () => {
   const { UserData, setUserData } = useContext(UserContext);
+
+  const [ LoginMutation ] = useMutation(LOGIN_MUTATION);
 
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
@@ -60,6 +64,13 @@ const Login = () => {
     return () => clearInterval(interval);
   }, [alert.open, timer]);
 
+  // 已登入者進到Login Page會自動被導向Search Page
+  useEffect(() => {
+    if (UserData.signed) {
+      navigate(`/login/${UserData.username}/search`);
+    }
+  });
+
   // Sign in
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,6 +83,44 @@ const Login = () => {
       }
       setError(errorRef.current);
       // LoginMutation
+      const signInPayLoad = await LoginMutation({
+        variables: {
+          data: {
+            name: username,
+            password: password,
+          },
+        },
+      });
+
+      if (signInPayLoad.data.loginUser.ok) {
+        let recipeList = [];
+        if (signInPayLoad.data.loginUser.user.recipeIds !== null) {
+          recipeList = [...signInPayLoad.data.loginUser.user.recipeIds]
+          setUserData({
+            username: username,
+            password: password,
+            recipeIds: recipeList,
+            signed: true,
+          });
+        } else {
+          setUserData({
+            username: username,
+            password: password,
+            scores: [],
+            signed: true,
+          });
+        }
+        navigate(`/user/${username}/search`);
+      } else {
+        setAlert({
+          open: true,
+          message: signInPayLoad.data.loginUser.error,
+          severity: "error",
+        });
+        setUsername("");
+        setPassword("");
+      }
+
       console.log(username + "  " + password);
       // Login Error Example
       if (username === "test") {
@@ -182,7 +231,12 @@ const Login = () => {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="" variant="body2">
+                  <Link
+                    component="button"
+                    onClick={() => navigate(`/signup`)}
+                    underline="hover"
+                    variant="body2"
+                  >
                     {"Sign Up"}
                   </Link>
                 </Grid>

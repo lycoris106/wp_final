@@ -37,7 +37,9 @@ const UserContext = createContext();
 function App() {
   const {
     UserData,
-    setUserData
+    setUserData,
+    handleLogout,
+    handleSignUp,
   } = useUser();
 
   return (
@@ -45,23 +47,28 @@ function App() {
       value={{
         UserData,
         setUserData,
+        handleLogout,
+        handleSignUp,
       }}
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          { /* Homepage / Search page */ }
-          <Route exact path="/search" element={<Search />} />
-          { /* Page for showing search results */ }
-          <Route path="/result" element={<Result />} />
-          { /* Page for testing Detail.js */}
-          <Route path="/detail/:id" element={<Detail />} />
-          { /* Page for testing Submit.js */ }
-          <Route path="/submit" element={<Submit />} />
-          { /* Page for testing Login.js */ }
-          <Route path="/login" element={<Login />} />
 
+          <Route exact path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+
+          { /* Homepage / Search page */ }
+          <Route path="/user/:username/search" element={<Search />} />
+          { /* Page for showing search results */ }
+          <Route path="/user/:username/result" element={<Result />} />
+          { /* Page for testing Detail.js */}
+          <Route path="/user/:username/detail/:id" element={<Detail />} />
+          { /* Page for testing Submit.js */ }
+          <Route path="/user/:username/submit" element={<Submit />} />
+          { /* Page for testing Login.js */ }
+
+
 
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="*" element={<Navigate to="/login" />} />

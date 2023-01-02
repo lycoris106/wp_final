@@ -6,6 +6,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
+import { UserContext } from "../../containers/App";
+import { useContext } from "react";
+
 
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
@@ -28,6 +31,8 @@ const AppBar = styled(MuiAppBar, {
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const { UserData, handleLogout, handleSignUp } = useContext(UserContext);
 
   return (
     <AppBar position='absolute' open={false}>
@@ -57,13 +62,22 @@ const Header = () => {
             {"Home"}
           </Button>
 
-          {/* <Button
-            key={"About"}
-            onClick={() => { navigate(`/login/${UserData.username}/about`) }}
-            sx={{ fontSize: 20, color: 'inherit', display: 'block' }}
+          <Button
+            key={"Log Out"}
+            onClick={handleLogout}
+            sx={{ fontSize: 20, color: 'inherit', display: 'block', px: 3}}
           >
-            {"About"}
-          </Button> */}
+            {"Log Out"}
+          </Button>
+
+          <Button
+            key={"Sign Up"}
+            onClick={handleSignUp}
+            sx={{ fontSize: 20, color: 'inherit', display: 'block', px: 3}}
+          >
+            {"Sign Up"}
+          </Button>
+
         </Box>
       </Toolbar>
     </AppBar>
