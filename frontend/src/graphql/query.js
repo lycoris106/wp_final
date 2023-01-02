@@ -7,6 +7,7 @@ export const SEARCH_QUERY = gql`
             title
             image_url
             tags
+            matches
             prev
             next
         }
@@ -14,19 +15,14 @@ export const SEARCH_QUERY = gql`
 `;
 
 export const GET_RECIPE_QUERY = gql`
-    query recipe($id: ID!, $ingredients: [String]!) {
-        recipe(id: $id, ingredients: $ingredients) {
-            id
-            title
+    query recipe($id: ID!) {
+        recipe(id: $id) {
             content
-            image_url
-            ingredients
-            matches
             instructions {
                 title
                 contents
             }
-            tags
+            ingredients
             time {
                 preparation
                 cook

@@ -45,7 +45,7 @@ git push
 ```
 
 ## Query
-### 1. query allrecipes
+### 1. query allrecipes (deprecated temporary)
 ```
 query {
     allrecipes {
@@ -53,48 +53,12 @@ query {
         title
         image_url
         ingredients
-        instructions {
-            title
-            contents
-        }
         tags
-        time {
-            preparation
-            cook
-            cleanup
-        }
     }
 }
 ```
 
-### 2. query recipes
-#### invalid query
-```
-query {
-    recipes {
-        id
-        title
-        image_url
-        tags
-        prev
-        next
-    }
-}
-```
-#### query no recipes
-```
-query {
-    recipes (ingredients: []) {
-        id
-        title
-        image_url
-        tags
-        prev
-        next
-    }
-}
-```
-#### query recipes with `sugar` included in `ingredients`
+### 2. query recipes with `sugar` included in `ingredients`
 ```
 query {
     recipes (ingredients: ["sugar"]) {
@@ -102,55 +66,25 @@ query {
         title
         image_url
         tags
+        matches
         prev
         next
     }
 }
 ```
 
-### 2. query recipe
-#### `id` dose not exist
-```
-query {
-    recipe (
-        id: "does not exist"
-        ingredients: ["CHILI", "shallots", "Sugar"]
-    ) {
-        id
-        title
-        image_url
-        ingredients
-        matches
-        instructions {
-            title
-            contents
-        }
-        tags
-        time {
-            preparation
-            cook
-            cleanup
-        }
-    }
-}
-```
-#### `id` exists
+### 3. query recipe
 ```
 query {
     recipe (
         id: "11d40156893b11eda36d8b51443f2256"
-        ingredients: ["CHILI", "shallots", "Sugar"]
     ) {
-        id
-        title
-        image_url
-        ingredients
-        matches
+        content
         instructions {
             title
             contents
         }
-        tags
+        ingredients
         time {
             preparation
             cook

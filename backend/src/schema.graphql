@@ -2,7 +2,7 @@
     type Query {
         allrecipes: [Recipe!]!
         recipes(ingredients: [String]!): [Recipe]!
-        recipe(id: ID!, ingredients: [String]!): Recipe
+        recipe(id: ID!): Recipe
     }
 
 """Mutation"""
