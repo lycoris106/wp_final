@@ -1,8 +1,22 @@
-import { Grid, Box, Avatar, Typography, TextField, Button, Link, Paper, Zoom, Alert } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Avatar,
+  Typography,
+  TextField,
+  Button,
+  Link,
+  Paper,
+  Zoom,
+  Alert
+} from "@mui/material";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
+import { UserContext } from "./App";
 
 const Login = () => {
+  const { UserData, setUserData } = useContext(UserContext);
+
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ timer, setTimer] = useState(0);
