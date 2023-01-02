@@ -1,0 +1,27 @@
+"""Query"""
+    type Query {
+        
+    }
+
+"""Mutation"""
+    type Mutation {
+
+    }
+
+"""Subscription"""
+    type Subscription {
+
+    }
+
+"""Type"""
+    type User {
+        id: String!
+        username: String!
+        password: String! 
+    }
+
+"""Input"""
+    input CreateUserInput{
+        username: String!
+        password: String!
+    }

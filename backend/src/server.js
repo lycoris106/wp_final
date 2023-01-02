@@ -14,9 +14,14 @@ import recipeModel from "./models/recipe.js";
 
 const pubSub = createPubSub()
 
+let typeDefs = "";
+for (const schema of ['recipe'])
+    typeDefs += fs.readFileSync(`./src/schemas/${schema}.graphql`, 'utf-8') + '\n';
+console.log(typeDefs);
+
 const yoga = createYoga({
     schema: createSchema({
-        typeDefs: fs.readFileSync('./src/schema.graphql', 'utf-8'),
+        typeDefs: typeDefs,
         resolvers: {
             Query,
             Mutation,
