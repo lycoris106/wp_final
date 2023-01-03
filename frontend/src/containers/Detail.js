@@ -60,7 +60,7 @@ const Detail = () => {
   const prevID = curRecipe.prev;
   const nextID = curRecipe.next;
   const prevRecipe = recipes.find((rec) => {return rec.id === prevID});
-  const nextRecipe = recipes.find((rec) => {return rec.id === prevID});
+  const nextRecipe = recipes.find((rec) => {return rec.id === nextID});
 
 
 
