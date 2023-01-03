@@ -180,7 +180,7 @@ const Submit = () => {
 
 
     evt.preventDefault();
-    myRecipeData.tags.push(`Created-by-${UserData.username}`);
+    myRecipeData.tags.push(`Created by ${UserData.username}`);
     console.log(myRecipeData);
     console.log('before createRecipe')
     const submitPayLoad = await createRecipe({
