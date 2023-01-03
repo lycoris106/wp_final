@@ -22,14 +22,14 @@ const colorMap = {
 }
 
 
-export default function RecipeCard({id, imageURL, title, tags, searchList, recipes}) {
+export default function RecipeCard({recipe, recipes}) {
   // console.log(tagDict);
 
   return (
     <Card sx={{ width: 340, height: 380 }}>
       <CardActionArea component={Link}
-        to={`/detail/${id}`}
-        state={{ searchList: searchList, recipes: recipes }}
+        to={`/detail/${recipe.id}`}
+        state={{ curRecipe: recipe, recipes: recipes }}
       >
       {/* <CardActionArea> */}
       {/* <Link
@@ -40,15 +40,15 @@ export default function RecipeCard({id, imageURL, title, tags, searchList, recip
         <CardMedia
           component="img"
           height="200"
-          image= {imageURL}
+          image= {recipe.image_url}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" align="center" sx={{ fontWeight: 'bold' }}>
-            {title}
+            {recipe.title}
           </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
             {
-              tags.map((tag, ind) => {
+              recipe.tags.map((tag, ind) => {
                 let color = null;
                 Object.keys(tagDict).forEach((tagType, index) => {
                   {/* console.log(dict.contents, tag); */}

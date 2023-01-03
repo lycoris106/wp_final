@@ -54,20 +54,19 @@ const Detail = () => {
   let { id } = useParams();
 
   const location = useLocation();
-  const searchList = location.state.searchList;
   const recipes = location.state.recipes;
-  const curRecipe = recipes.find((rec) => {
-    return rec.id === id;
-  })
+  const curRecipe = location.state.curRecipe;
+  
   const prevID = curRecipe.prev;
   const nextID = curRecipe.next;
+  const prevRecipe = recipes.find((rec) => {return rec.id === prevID});
+  const nextRecipe = recipes.find((rec) => {return rec.id === prevID});
 
 
 
   const { data, loading, subscribeToMore } = useQuery(GET_RECIPE_QUERY, {
     variables: {
       id: id,
-      ingredients: searchList
     }
   });
 
@@ -87,14 +86,14 @@ const Detail = () => {
   // const instructions = data.recipe.instructions;
   // const ingredList = data.recipe.ingredients;
 
-  if (loading || (!data.recipe) || (!data.recipe.tags) || (!data.recipe.ingredients) || (!data.recipe.instructions)) return <p>Loading...</p>;
+  if (loading || (!data.recipe) || (!data.recipe.instructions)) return <p>Loading...</p>;
 
   return (
     <Layout>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
         <Link
           to={`/detail/${prevID}`}
-          state={{ searchList: searchList, recipes: recipes }}
+          state={{ curRecipe: prevRecipe, recipes: recipes }}
           style={{ textDecoration: 'none' }}
         >
           <Button variant="contained" style={{textTransform: 'none'}} >
@@ -104,7 +103,7 @@ const Detail = () => {
 
         <Link
           to={`/detail/${nextID}`}
-          state={{ searchList: searchList, recipes: recipes }}
+          state={{ curRecipe: nextRecipe, recipes: recipes }}
           style={{ textDecoration: 'none' }}
         >
           <Button variant="contained" style={{textTransform: 'none'}} >
@@ -117,16 +116,16 @@ const Detail = () => {
         <Grid item xs={8}>
           <Card sx={{ width: 700, height:650, mb: 5}}>
             <Typography gutterBottom variant="h3" component="div" align="center" sx={{ fontWeight: 'bold' }}>
-              {data.recipe.title}
+              {curRecipe.title}
             </Typography>
             <CardMedia
               component="img"
-              image= {data.recipe.image_url}
+              image= {curRecipe.image_url}
             />
           </Card>
           <StyledPaper elevation={2} bgColor={'#fcf9f4'} sx={{ width: 700 }}>
             {
-              data.recipe.tags.map((tag, ind) => {
+              curRecipe.tags.map((tag, ind) => {
                 let color = null;
                 Object.keys(tagDict).forEach((tagType, index) => {
                   {/* console.log(dict.contents, tag); */}
@@ -165,8 +164,8 @@ const Detail = () => {
             <Divider />
             <List>
               {
-                data.recipe.ingredients.map((ing, idx) => (
-                  <IngredItem key={'ing'+idx} ingred={ing} matches={data.recipe.matches[idx]}/>
+                curRecipe.ingredients.map((ing, idx) => (
+                  <IngredItem key={'ing'+idx} ingred={ing.content} matches={ing.match}/>
                 ))
               }
 

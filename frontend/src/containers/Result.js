@@ -39,11 +39,7 @@ const Result = (props) => {
             data && data.recipes && data.recipes.map(recipe => (
               <Grid item key={'recipe'+recipe.id}>
                 <RecipeCard
-                  id={recipe.id}
-                  imageURL={recipe.image_url}
-                  title={recipe.title}
-                  tags={recipe.tags}
-                  searchList={ingredList}
+                  recipe={recipe}
                   recipes={data.recipes}
                 />
               </Grid>

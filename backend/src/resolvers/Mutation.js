@@ -99,8 +99,8 @@ const Mutation =  {
     updateUser: async (parent, {input}, {userModel}) => {
         const user = await userModel.findOne({name: input.name});
 
-        // if (!user)
-        //     return {ok: false, error: "User doesn't exist"};
+        if (!user)
+            return {ok: false, error: "User doesn't exist"};
         
         // if (user.token !== input.token)
         //     return {ok: false, error: "User forced logout"};

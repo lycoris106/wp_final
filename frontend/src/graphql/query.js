@@ -3,13 +3,16 @@ import { gql } from '@apollo/client';
 export const SEARCH_QUERY = gql`
     query recipes($ingredients: [String]!) {
         recipes(ingredients: $ingredients) {
+            prev
             id
+            next
             title
             image_url
+            ingredients {
+                content
+                match
+            }
             tags
-            matches
-            prev
-            next
         }
     }
 `;
@@ -22,7 +25,6 @@ export const GET_RECIPE_QUERY = gql`
                 title
                 contents
             }
-            ingredients
             time {
                 preparation
                 cook

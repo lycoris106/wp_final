@@ -119,7 +119,7 @@ mutation {
 ```
 mutation {
     updateRecipe (input: {
-        id: "f62f10108aae11eda9ecf19f891c3f45"
+        id: "fc38c37c8ac011eda9ecf19f891c3f45"
         title: "update"
     }) {
         prev
@@ -150,7 +150,7 @@ mutation {
 ```
 mutation {
     deleteRecipe(
-      	id: "f62f10158aae11eda9ecf19f891c3f45"
+      	id: "fc38c37c8ac011eda9ecf19f891c3f45"
     )
 }
 ```

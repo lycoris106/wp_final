@@ -3,11 +3,16 @@ import { gql } from '@apollo/client';
 export const RECIPE_CREATED_SUBSCRIPTION = gql`
     subscription RecipeCreated {
         recipeCreated {
+            prev
             id
+            next
             title
             content
             image_url
-            ingredients
+            ingredients {
+                content
+                match
+            }
             instructions {
                 title
                 contents
@@ -25,11 +30,16 @@ export const RECIPE_CREATED_SUBSCRIPTION = gql`
 export const RECIPE_UPDATED_SUBSCRIPTION = gql`
     subscription RecipeUpdated {
         recipeUpdated {
+            prev
             id
+            next
             title
             content
             image_url
-            ingredients
+            ingredients {
+                content
+                match
+            }
             instructions {
                 title
                 contents

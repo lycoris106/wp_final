@@ -3,11 +3,16 @@ import { gql } from '@apollo/client';
 export const CREATE_RECIPE_MUTATION = gql`
     mutation CreateRecipe($input: CreateRecipeInput!) {
         createRecipe(input: $input) {
+            prev
             id
+            next
             title
             content
             image_url
-            ingredients
+            ingredients {
+                content
+                match
+            }
             instructions {
                 title
                 contents
@@ -25,11 +30,16 @@ export const CREATE_RECIPE_MUTATION = gql`
 export const UPDATE_RECIPE_MUTATION = gql`
     mutation UpdateRecipe($input: UpdateRecipeInput!) {
         updateRecipe(input: $input) {
+            prev
             id
+            next
             title
             content
             image_url
-            ingredients
+            ingredients {
+                content
+                match
+            }
             instructions {
                 title
                 contents
