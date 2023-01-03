@@ -126,10 +126,13 @@ const Detail = () => {
                 let color = null;
                 Object.keys(tagDict).forEach((tagType, index) => {
                   {/* console.log(dict.contents, tag); */}
-                  if (tagDict[tagType].includes(tag)) {
-                    color = colorMap[tagType];
-                    return;
+                  if (tag.includes("Customized")) {
+                    color = colorMap["customized"];
                   }
+                  else if (tagDict[tagType].includes(tag)) {
+                    color = colorMap[tagType];
+                  }
+                  return;
                 });
 
                 if (color) {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import IngredientInput from "../components/Submit/IngredientInput";
 import InstructionInput from "../components/Submit/InstructionInput";
@@ -21,8 +21,13 @@ import {
   Snackbar
 } from "@mui/material";
 
+import { UserContext } from "./App";
+
 import { useMutation } from '@apollo/client';
-import { CREATE_RECIPE_MUTATION } from '../graphql/mutations';
+import {
+  CREATE_RECIPE_MUTATION,
+  UPDATE_USER_MUTATION
+} from '../graphql/mutations';
 
 import tagsData from '../json/tags.json';
 
@@ -40,6 +45,8 @@ Object.values(tagsData).forEach((l) => {
 
 
 const Submit = () => {
+  const { UserData, setUserData } = useContext(UserContext);
+
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [ingredients, setIngredients] = useState([]);
@@ -48,6 +55,7 @@ const Submit = () => {
   const [recipeData, setRecipeData] = useState({});
 
   const [createRecipe] = useMutation(CREATE_RECIPE_MUTATION);
+  const [updateUser] = useMutation(UPDATE_USER_MUTATION);
 
   const [open, setOpen] = useState(false);
 
@@ -146,26 +154,10 @@ const Submit = () => {
     // console.log(newTags);
   }
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    recipeData.tags.push('customized');
-    createRecipe({
-      variables: {
-        input: recipeData
-      },
+  const handleSubmit = async (evt) => {
+    const ingredList = ingredients.map((ing) => {
+      return { content: ing.quantity+' '+ing.quantifier+' '+ing.name };
     });
-
-    setTitle('');
-    setUrl('');
-    setIngredients([]);
-    setInstructions([]);
-    setTags([]);
-
-    setOpen(true);
-  }
-
-  useEffect(() => {
-    const ingredList = ingredients.map((ing) => ing.quantity+' '+ing.quantifier+' '+ing.name);
     const instList = instructions.map((ins) => {
       return {
         title: ins.title,
@@ -177,7 +169,7 @@ const Submit = () => {
       return tag.label;
     });
 
-    let newRecipeData = {
+    const myRecipeData = {
       title: title,
       image_url: url,
       tags: tagList,
@@ -185,9 +177,65 @@ const Submit = () => {
       instructions: instList
     };
 
-    console.log(newRecipeData);
-    setRecipeData(newRecipeData);
-  }, [title, url, ingredients, instructions, tags]);
+
+
+    evt.preventDefault();
+    myRecipeData.tags.push(`Created-by-${UserData.username}`);
+    console.log(myRecipeData);
+    console.log('before createRecipe')
+    const submitPayLoad = await createRecipe({
+      variables: {
+        input: myRecipeData
+      },
+    });
+
+    let newRecipeIds = [...UserData.recipeIds, submitPayLoad.data.createRecipe.id];
+    setUserData((prev) => ({...prev, recipeIds: newRecipeIds}));
+    console.log('before updateUser')
+    await updateUser({
+      variables: {
+        input: {
+          token: "token",
+          name: UserData.username,
+          contribution: submitPayLoad.data.createRecipe.id,
+        }
+      }
+    });
+    console.log('after updateUser')
+
+    setTitle('');
+    setUrl('');
+    setIngredients([]);
+    setInstructions([]);
+    setTags([]);
+
+    setOpen(true);
+  }
+
+  // useEffect(() => {
+
+  //   const instList = instructions.map((ins) => {
+  //     return {
+  //       title: ins.title,
+  //       contents: ins.contents.split("\n")
+  //     };
+  //   });
+
+  //   const tagList = tags.filter((tag) => tag).map((tag) => {
+  //     return tag.label;
+  //   });
+
+  //   let newRecipeData = {
+  //     title: title,
+  //     image_url: url,
+  //     tags: tagList,
+  //     ingredients: ingredList,
+  //     instructions: instList
+  //   };
+
+
+  //   setRecipeData(newRecipeData);
+  // }, [title, url, ingredients, instructions, tags]);
 
 
   return (
