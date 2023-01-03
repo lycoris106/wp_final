@@ -19,7 +19,7 @@ const Layout = (props) => {
         <Container maxWidth="lg" sx={{ mt: 4, mb: 8, minHeight:'65vh', }}>
           {props.children}
         </Container>
-        {/* <Footer/> */}
+        <Footer/>
       </Box>
     </Box>
   )
