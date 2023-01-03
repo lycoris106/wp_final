@@ -98,8 +98,8 @@ const Login = () => {
 
       if (signInPayLoad.data.loginUser.ok) {
         let recipeList = [];
-        if (signInPayLoad.data.loginUser.user.recipeIds !== null) {
-          recipeList = [...signInPayLoad.data.loginUser.user.recipeIds]
+        if (signInPayLoad.data.loginUser.user.contributions !== null) {
+          recipeList = [...signInPayLoad.data.loginUser.user.contributions]
           setUserData({
             username: username,
             password: password,
@@ -110,7 +110,7 @@ const Login = () => {
           setUserData({
             username: username,
             password: password,
-            scores: [],
+            recipeIds: [],
             signed: true,
           });
         }
