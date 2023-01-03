@@ -32,7 +32,7 @@ const Footer = () => {
               <Typography color="#f7f1ed">吳文皓 b08204037@ntu.edu.tw</Typography>
             </Box>
             <Box>
-              <Typography color="#f7f1ed">郭承諺 #</Typography>
+              <Typography color="#f7f1ed">郭承諺 b08902069@ntu.edu.tw</Typography>
             </Box>
             <Box>
               <Typography color="#f7f1ed">賴致甫 b08902024@ntu.edu.tw</Typography>
