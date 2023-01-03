@@ -36,39 +36,6 @@ const useUser = () => {
     }
   }, []);
 
-  // const handleChangeUserData = (key, value) => {
-  //   // setDisplayError(false);
-  //   if (key === "username" || key === "password") {
-  //     setUserData({
-  //       ...UserData,
-  //       [key]: value,
-  //     });
-  //   } else {
-  //     setUserData({
-  //       ...UserData,
-  //       scores: { ...UserData.scores, [key]: value },
-  //     });
-  //   }
-  // };
-
-  // after click sign up button
-  // const handleCreate = () => {
-  //   if (Object.values(UserData).some((v) => !v)) {
-  //     setDisplayError(true);
-  //     return;
-  //   }
-  //   SignupMutation({
-  //     variables: {
-  //       name: UserData.username,
-  //       password: UserData.password,
-  //     },
-  //     onCompleted: () => {
-  //       setUserData(initUser);
-  //       navigate("/login");
-  //       // handleClose();
-  //     },
-  //   });
-  // };
 
   const handleLogout = async () => {
     await localStorage.clear();
@@ -79,7 +46,7 @@ const useUser = () => {
   const handleSignUp = async () => {
     await localStorage.clear();
     await setUserData(initUser);
-    navigate("/register");
+    navigate("/signup");
   };
 
   return {

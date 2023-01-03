@@ -212,30 +212,6 @@ const Submit = () => {
     setOpen(true);
   }
 
-  // useEffect(() => {
-
-  //   const instList = instructions.map((ins) => {
-  //     return {
-  //       title: ins.title,
-  //       contents: ins.contents.split("\n")
-  //     };
-  //   });
-
-  //   const tagList = tags.filter((tag) => tag).map((tag) => {
-  //     return tag.label;
-  //   });
-
-  //   let newRecipeData = {
-  //     title: title,
-  //     image_url: url,
-  //     tags: tagList,
-  //     ingredients: ingredList,
-  //     instructions: instList
-  //   };
-
-
-  //   setRecipeData(newRecipeData);
-  // }, [title, url, ingredients, instructions, tags]);
 
 
   return (
@@ -359,13 +335,6 @@ const Submit = () => {
                             fullWidth
                           />
                         )}
-                        // renderOption={(props, option) => {
-                        //   return (
-                        //     <li {...props} key={option.id}>
-                        //       {option.name}
-                        //     </li>
-                        //   );
-                        // }}
                         sx={{ width: 200 }}
                         value={tag}
                         onChange={(evt, newValue) => {handleTagChange(evt, newValue, index)}}
