@@ -10,12 +10,14 @@ import Mutation from "./resolvers/Mutation.js";
 import Subscription from "./resolvers/Subscription.js";
 
 /* db */
-import recipeModel from "./models/recipe.js";
+import recipeModel from './models/recipe.js';
+import userModel from './models/user.js'
 
-const pubSub = createPubSub()
+const pubSub = createPubSub();
+const SALT_ROUNDS = Number(process.env.SALT_ROUNDS);
 
 let typeDefs = "";
-for (const schema of ['recipe'])
+for (const schema of ['recipe', 'user'])
     typeDefs += fs.readFileSync(`./src/schemas/${schema}.graphql`, 'utf-8') + '\n';
 
 const yoga = createYoga({
@@ -29,7 +31,9 @@ const yoga = createYoga({
     }),
     context: {
         pubSub,
+        saltRounds: SALT_ROUNDS,
         recipeModel,
+        userModel
     },
     graphiql: {
         subscriptionsProtocol: 'WS'

@@ -44,8 +44,9 @@ git push
 }
 ```
 
-## Query
-### 1. query recipes with `beef`, `garlic` included in `ingredients`
+## Recipe
+### query
+#### 1. recipes
 ```
 query {
     recipes (ingredients: ["beef", "garlic"]) {
@@ -63,7 +64,7 @@ query {
 }
 ```
 
-### 2. query recipe
+#### 2. recipe
 ```
 query {
     recipe (
@@ -83,8 +84,8 @@ query {
 }
 ```
 
-## Mutation
-### 1. mutation createRecipe
+### mutation
+#### 1. createRecipe
 ```
 mutation {
     createRecipe (input: {
@@ -114,7 +115,7 @@ mutation {
 }
 ```
 
-### 2. mutation updateRecipe
+#### 2. updateRecipe
 ```
 mutation {
     updateRecipe (input: {
@@ -145,7 +146,7 @@ mutation {
 }
 ```
 
-### 3. mutation deleteRecipe
+#### 3. deleteRecipe
 ```
 mutation {
     deleteRecipe(
@@ -153,8 +154,63 @@ mutation {
     )
 }
 ```
+## User
+### mutation
+#### 1. createUser
+```
+mutation {
+    createUser (
+        name: "victorkuoz"
+        password: "b08902069"
+    ) {
+        ok
+        user {
+          token
+          name
+          contributions
+          favorites
+        }
+        error
+    }
+}
+```
 
-## Subscription
-### 1. subscription recipeCreated
-### 2. subscription recipeUpdated
-### 3. subscription recipeDeleted
+#### 2. loginUser
+```
+mutation {
+    loginUser (
+        name: "victorkuoz"
+        password: "b08902069"
+    ) {
+        ok
+        user {
+          token
+          name
+          contributions
+          favorites
+        }
+        error
+    }
+}
+```
+
+#### 3. updateUser
+```
+mutation {
+    updateUser ( input: {
+        token: "necessary but doesn't care"
+        name: "victorkuoz"
+        contribution: "recipeID"
+        favorite: "recipeID"
+    }) {
+        ok
+        user {
+          token
+          name
+          contributions
+          favorites
+        }
+        error
+    }
+}
+```

@@ -49,3 +49,48 @@ export const DELETE_RECIPE_MUTATION = gql`
         deleteRecipe(id: $id)
     }
 `;
+
+export const CREATE_USER_MUTATION = gql`
+    mutation CreateUser($name: String!, $password: String!) {
+        createUser(name: $name, password: $password) {
+            ok
+            user {
+                token
+                name
+                contributions
+                favorites
+            }
+            error
+        }
+    }
+`;
+
+export const LOGIN_USER_MUTATION = gql`
+    mutation CreateUser($name: String!, $password: String!) {
+        createUser(name: $name, password: $password) {
+            ok
+            user {
+                token
+                name
+                contributions
+                favorites
+            }
+            error
+        }
+    }
+`;
+
+export const UPDATE_USER_MUTATION = gql`
+    mutation CreateUser($input: UpdateUserInput!) {
+        createUser(input: $input) {
+            ok
+            user {
+                token
+                name
+                contributions
+                favorites
+            }
+            error
+        }
+    }
+`;

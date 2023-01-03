@@ -2,9 +2,12 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {
-        id: { type: String, required: true, unique: true},
-        username: { type: String, required: true, unique: true},
-        password: { type: String, required: true, unique: false},
+        token: {type: String, required: true},
+        name: {type: String, required: true, unique: true},
+        password: {type: String, required: true},
+
+        contributions: {type: [String], required: false},
+        favorites: {type: [String], required: false}
     },
     {
         collection: 'user',

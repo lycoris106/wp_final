@@ -1,29 +1,45 @@
-"""Query"""
-    type Query {
-        user(username: String!, password: String!): User
-    }
-
 """Mutation"""
     type Mutation {
-
-    }
-
-"""Subscription"""
-    type Subscription {
-
+        createUser(name: String!, password: String!): CreateResponse!
+        loginUser(name: String!, password: String!): LoginResponse!
+        updateUser(input: UpdateUserInput!): UpdateResponse!
     }
 
 """Type"""
     type User {
-        id: ID
+        token: ID!
+        name: String!
+        contributions: [ID]
+        favorites: [ID]
+    }
+
+    type CreateResponse {
+        ok: Boolean!
+        user: User
+        error: String
+    }
+
+    type LoginResponse {
+        ok: Boolean!
+        user: User
+        error: String
+    }
+
+    type UpdateResponse {
+        ok: Boolean!
+        user: User
+        error: String
     }
 
 """Input"""
-    input CreateUserInput {
-        username: String!
-        password: String!
+    input IdentInput {
+        name: String!
+        password: String!        
     }
 
     input UpdateUserInput {
-        username: String!
+        token: ID!
+        name: String!
+        contribution: ID
+        favorite: ID
     }
