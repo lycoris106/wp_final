@@ -63,11 +63,11 @@ function App() {
           { /* Homepage / Search page */ }
           <Route path="/user/:username/search" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
           { /* Page for showing search results */ }
-          <Route path="/user/:username/result" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
+          <Route path="/user/:username/result" element={<PrivateRoute authed={UserData.signed} component={Result}/>} />
           { /* Page for testing Detail.js */}
-          <Route path="/user/:username/detail/:id" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
+          <Route path="/user/:username/detail/:id" element={<PrivateRoute authed={UserData.signed} component={Detail}/>} />
           { /* Page for testing Submit.js */ }
-          <Route path="/user/:username/submit" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
+          <Route path="/user/:username/submit" element={<PrivateRoute authed={UserData.signed} component={Submit}/>} />
           { /* Page for testing Login.js */ }
 
 
