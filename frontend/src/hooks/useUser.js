@@ -31,7 +31,7 @@ const useUser = () => {
 
   useEffect(() => {
     console.log(location.pathname);
-    if (!UserData.signed && location.pathname !== "/register") {
+    if (!UserData.signed && location.pathname !== "/signup") {
       navigate(`/`);
     }
   }, []);
