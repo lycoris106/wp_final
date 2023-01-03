@@ -11,6 +11,7 @@ const dataInit = async () => {
     await userModel.deleteMany({});
 
     await recipeModel.insertMany(recipes);
+    await userModel.insertMany(users);
 
     console.log("database initialized!");
 };

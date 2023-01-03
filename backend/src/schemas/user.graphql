@@ -32,11 +32,6 @@
     }
 
 """Input"""
-    input IdentInput {
-        name: String!
-        password: String!        
-    }
-
     input UpdateUserInput {
         token: ID!
         name: String!
