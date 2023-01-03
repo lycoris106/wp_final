@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 
 import { styled } from '@mui/material/styles';
 
+import { UserContext } from "../containers/App";
+import { useContext } from "react";
+
 import tagDict from '../json/tags.json';
 
 const colorMap = {
@@ -24,11 +27,12 @@ const colorMap = {
 
 export default function RecipeCard({recipe, recipes}) {
   // console.log(tagDict);
+  const { UserData } = useContext(UserContext);
 
   return (
     <Card sx={{ width: 340, height: 380 }}>
       <CardActionArea component={Link}
-        to={`/detail/${recipe.id}`}
+        to={`/user/${UserData.username}/detail/${recipe.id}`}
         state={{ curRecipe: recipe, recipes: recipes }}
       >
       {/* <CardActionArea> */}

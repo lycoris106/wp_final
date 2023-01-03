@@ -10,9 +10,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 const LOCALSTORAGE_KEY = "save-me";
 
 const useUser = () => {
-  const [SignupMutation] = useMutation(SIGNUP_MUTATION);
-  const [LoginMutation] = useMutation(LOGIN_MUTATION);
-  const [UpdateMutation] = useMutation(UPDATE_MUTATION);
+  // const [SignupMutation] = useMutation(SIGNUP_MUTATION);
+  // const [LoginMutation] = useMutation(LOGIN_MUTATION);
+  // const [UpdateMutation] = useMutation(UPDATE_MUTATION);
 
   const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
 
@@ -52,23 +52,23 @@ const useUser = () => {
   // };
 
   // after click sign up button
-  const handleCreate = () => {
-    if (Object.values(UserData).some((v) => !v)) {
-      setDisplayError(true);
-      return;
-    }
-    SignupMutation({
-      variables: {
-        name: UserData.username,
-        password: UserData.password,
-      },
-      onCompleted: () => {
-        setUserData(initUser);
-        navigate("/login");
-        // handleClose();
-      },
-    });
-  };
+  // const handleCreate = () => {
+  //   if (Object.values(UserData).some((v) => !v)) {
+  //     setDisplayError(true);
+  //     return;
+  //   }
+  //   SignupMutation({
+  //     variables: {
+  //       name: UserData.username,
+  //       password: UserData.password,
+  //     },
+  //     onCompleted: () => {
+  //       setUserData(initUser);
+  //       navigate("/login");
+  //       // handleClose();
+  //     },
+  //   });
+  // };
 
   const handleLogout = async () => {
     await localStorage.clear();
@@ -84,6 +84,9 @@ const useUser = () => {
 
   return {
     UserData,
+    setUserData,
+    handleLogout,
+    handleSignUp,
   };
 };
 

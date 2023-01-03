@@ -13,13 +13,17 @@ import {
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useState, useRef, useEffect, useContext } from "react";
 import { useMutation } from '@apollo/client';
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "./App";
-import { LOGIN_MUTATION } from "../graphql/mutations";
+import { LOGIN_USER_MUTATION } from "../graphql/mutations";
+
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const { UserData, setUserData } = useContext(UserContext);
 
-  const [ LoginMutation ] = useMutation(LOGIN_MUTATION);
+  const [ LoginMutation ] = useMutation(LOGIN_USER_MUTATION);
 
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
@@ -72,7 +76,7 @@ const Login = () => {
   });
 
   // Sign in
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (username && password) {
       errorRef.current = {
@@ -85,12 +89,12 @@ const Login = () => {
       // LoginMutation
       const signInPayLoad = await LoginMutation({
         variables: {
-          data: {
-            name: username,
-            password: password,
-          },
+          name: username,
+          password: password,
         },
       });
+
+      console.log('signInPayLoad: ', signInPayLoad);
 
       if (signInPayLoad.data.loginUser.ok) {
         let recipeList = [];

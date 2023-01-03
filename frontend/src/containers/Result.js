@@ -11,6 +11,7 @@ import { SEARCH_QUERY } from '../graphql/query'
 const Result = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
+
   const ingredList = location.state.ingredList;
   // const [ingredList, setingredList] = useState(location.state.ingredList);
   console.log(location.state.ingredList);

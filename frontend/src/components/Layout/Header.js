@@ -49,14 +49,14 @@ const Header = () => {
         <Box sx={{ flexGrow: 0.2, display: { xs: 'none', md: 'flex' } }}>
           <Button
             key={"Submit"}
-            onClick={() => { navigate(`/submit`) }}
+            onClick={() => { navigate(`/user/${UserData.username}/submit`) }}
             sx={{ fontSize: 20, color: 'inherit', display: 'block', px: 3 }}
           >
             {"Submit"}
           </Button>
           <Button
             key={"Home"}
-            onClick={() => { navigate(`/search`) }}
+            onClick={() => { navigate(`/user/${UserData.username}/search`) }}
             sx={{ fontSize: 20, color: 'inherit', display: 'block', px: 3}}
           >
             {"Home"}

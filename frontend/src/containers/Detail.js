@@ -51,12 +51,12 @@ const StyledPaper = styled(Paper, {
 
 const Detail = () => {
 
-  let { id } = useParams();
+  let { username, id } = useParams();
 
   const location = useLocation();
   const recipes = location.state.recipes;
   const curRecipe = location.state.curRecipe;
-  
+
   const prevID = curRecipe.prev;
   const nextID = curRecipe.next;
   const prevRecipe = recipes.find((rec) => {return rec.id === prevID});
@@ -70,9 +70,6 @@ const Detail = () => {
     }
   });
 
-  const handleSwap = () => {
-
-  }
 
   useEffect(() => {
     // console.log('data', data);
@@ -92,7 +89,7 @@ const Detail = () => {
     <Layout>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
         <Link
-          to={`/detail/${prevID}`}
+          to={`/user/${username}/detail/${prevID}`}
           state={{ curRecipe: prevRecipe, recipes: recipes }}
           style={{ textDecoration: 'none' }}
         >
@@ -102,7 +99,7 @@ const Detail = () => {
         </Link>
 
         <Link
-          to={`/detail/${nextID}`}
+          to={`/user/${username}/detail/${nextID}`}
           state={{ curRecipe: nextRecipe, recipes: recipes }}
           style={{ textDecoration: 'none' }}
         >

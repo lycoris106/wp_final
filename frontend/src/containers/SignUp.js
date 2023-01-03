@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-// import { SIGNUP_MUTATION } from "../graphql/index";
+import { CREATE_USER_MUTATION } from "../graphql/mutations";
 import { useMutation } from '@apollo/client';
 import {
   Box,
@@ -26,7 +26,8 @@ import Visibility from "@mui/icons-material/Visibility";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  // const [SignupMutation] = useMutation(SIGNUP_MUTATION);
+  const [SignupMutation] = useMutation(CREATE_USER_MUTATION);
+
   const [visibility, setVisibility] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -64,28 +65,26 @@ const SignUp = () => {
         });
         return;
       }
-      // else {
-      //   const signUpPayLoad = await SignupMutation({
-      //     variables: {
-      //       data: {
-      //         name: username,
-      //         password: password,
-      //       },
-      //     },
-      //   });
-      //   if (signUpPayLoad.data.createUser.ok) {
-      //     navigate(`/login`);
-      //   } else {
-      //     setAlert({
-      //       open: true,
-      //       message: signUpPayLoad.data.createUser.error,
-      //       severity: "error",
-      //     });
-      //     setUsername("");
-      //     setPassword("");
-      //     setConfirmPassword("");
-      //   }
-      // }
+      else {
+        const signUpPayLoad = await SignupMutation({
+          variables: {
+            name: username,
+            password: password,
+          },
+        });
+        if (signUpPayLoad.data.createUser.ok) {
+          navigate(`/login`);
+        } else {
+          setAlert({
+            open: true,
+            message: signUpPayLoad.data.createUser.error,
+            severity: "error",
+          });
+          setUsername("");
+          setPassword("");
+          setConfirmPassword("");
+        }
+      }
     } else {
       if (!username) {
         errorRef.current = {

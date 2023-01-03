@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { color, Container } from "@mui/system";
 import {
   Box,
@@ -44,6 +44,7 @@ const colorMap = {
 const Search = () => {
   const navigate = useNavigate();
   // console.log(ingredData);
+  let { username } = useParams();
 
   const [selected, setSelected] = useState(new Set());
   const [filter, setFilter] = useState('All')
@@ -167,7 +168,7 @@ const Search = () => {
               <Divider />
               <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Link
-                  to="/result" state={{ ingredList: Array.from(selected) }}
+                  to={`/user/${username}/result`} state={{ ingredList: Array.from(selected) }}
                   style={{ textDecoration: 'none' }}
                 >
                   <Button
