@@ -13,6 +13,8 @@ import Submit from "./Submit";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
+import PrivateRoute from "../components/PrivateRoute";
+
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -59,13 +61,13 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
 
           { /* Homepage / Search page */ }
-          <Route path="/user/:username/search" element={<Search />} />
+          <Route path="/user/:username/search" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
           { /* Page for showing search results */ }
-          <Route path="/user/:username/result" element={<Result />} />
+          <Route path="/user/:username/result" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
           { /* Page for testing Detail.js */}
-          <Route path="/user/:username/detail/:id" element={<Detail />} />
+          <Route path="/user/:username/detail/:id" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
           { /* Page for testing Submit.js */ }
-          <Route path="/user/:username/submit" element={<Submit />} />
+          <Route path="/user/:username/submit" element={<PrivateRoute authed={UserData.signed} component={Search}/>} />
           { /* Page for testing Login.js */ }
 
 

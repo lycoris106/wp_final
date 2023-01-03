@@ -6,11 +6,21 @@ import Layout from "../components/Layout/Layout";
 import Grid from "@mui/material/Grid";
 import { useQuery } from '@apollo/client';
 import { SEARCH_QUERY } from '../graphql/query'
-
+import { UserContext } from "./App";
 
 const Result = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { UserData } = useContext(UserContext);
+
+
+  // useEffect(() => {
+  //   console.log('result in:', location.pathname);
+  //   if (!UserData.signed && location.pathname !== "/signup") {
+  //     navigate(`/`);
+  //   }
+  // }, []);
 
   const ingredList = location.state.ingredList;
   // const [ingredList, setingredList] = useState(location.state.ingredList);
@@ -22,12 +32,14 @@ const Result = (props) => {
   });
 
 
-  useEffect(() => {
-    // console.log('data', data);
-    if (data) {
-      console.log('data.recipes', data.recipes);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   // console.log('data', data);
+  //   if (data) {
+  //     console.log('data.recipes', data.recipes);
+  //   }
+  // }, [data]);
+
+
 
   if (loading) return <p>Loading...</p>;
 
