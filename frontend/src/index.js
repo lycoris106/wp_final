@@ -12,7 +12,7 @@ import {
 
 
 const httpLink = new HttpLink({
-  uri: 'https://wp-final-front.herokuapp.com:6727/graphql'
+  uri: 'http://localhost:4000/graphql'
 });
 
 const client = new ApolloClient({
