@@ -25,15 +25,6 @@ const Query = {
             return R - L;
         });
 
-        // for (var recipe of recipes) {
-        //     let cnt = 0;
-        //     for (var ingredient of recipe.ingredients) {
-        //         if (ingredient.match)
-        //             cnt++;
-        //     }
-        //     process.stdout.write(`${cnt} `)
-        // }
-
         recipes = recipes.slice(0, Math.min(recipes.length, 100));
         for (var i = 0, n = recipes.length; i < n; i++) {
             recipes[i].prev = recipes[(i - 1 + n)%n].id;

@@ -6,12 +6,12 @@
 #### 1. data example
 - refer to submodule `scraper`
 #### 2. git submodule management
-- update to the version recorded in current repository (for all collaborator)
+- update to the version recorded in current repository (for collaborators)
 ```
 git pull --rebase
 git submodule update
 ```
-- update to the latest version of remote submodule repository (for developer only)
+- update to the latest version of remote submodule repository (for developer)
 ```
 git submodule update --remote
 git add .
