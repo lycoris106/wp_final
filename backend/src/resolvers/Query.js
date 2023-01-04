@@ -38,6 +38,8 @@ const Query = {
         for (var i = 0, n = recipes.length; i < n; i++) {
             recipes[i].prev = recipes[(i - 1 + n)%n].id;
             recipes[i].next = recipes[(i + 1)%n].id;
+            if (!recipes[i].image_url)
+                recipes[i].image_url = "https://http.cat/404";
         }
         return recipes;
     },
