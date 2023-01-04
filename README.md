@@ -45,6 +45,7 @@ yarn
 yarn server
 ```
 ### note
+- 為節省deploy平台流量，過一段時間deployed link會進入asleep狀態，需要等待一分鐘左右
 - 預設食譜上傳到網站需要等一下，後端會顯示`database initialized!`
 - 目前並無提供預設使用者，因此助教在測試前需要先`sign up`並且`sign in`
 - 重新整理會導致回到login page
